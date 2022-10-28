@@ -1,7 +1,9 @@
 <template>
-  <button @click="$emit('buttonClicked')">
-    <span>{{ text }}</span>
-  </button>
+  <div class="main-button-wrapper">
+    <button @click="$emit('buttonClicked')">
+      <span>{{ text }}</span>
+    </button>
+  </div>
 </template>
 
 <script>
@@ -14,6 +16,11 @@ export default {
 </script>
 
 <style scoped>
+  .main-button-wrapper {
+    width: 450px;
+    height: 55px;
+  }
+
   button {
     width: 450px;
     height: 55px;
