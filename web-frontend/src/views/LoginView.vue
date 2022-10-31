@@ -4,6 +4,9 @@
       <MainInput class="mt-2" label="Email" input-type="email" @input-change="onEmailInputChange"/>
       <MainInput class="mt-2" label="Password" input-type="password" @input-change="onPasswordInputChange"/>
       <MainButton class="mt-4" text="Log in" @button-click="onLoginButtonClick"/>
+      <div class="mt-2">
+        <router-link class="sign-up-link" to="/signup"><u>Sign up</u></router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -57,5 +60,11 @@ export default {
 
   .login-view {
     width: 450px;
+  }
+
+  .sign-up-link {
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
   }
 </style>
