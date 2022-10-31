@@ -1,7 +1,7 @@
 <template>
   <div class="main-input-wrapper">
     <div class="main-input-label">{{ label }}</div>
-    <input :type="inputType" @input="$emit('inputChanged')">
+    <input :type="inputType" v-model="inputContent" @input="$emit('inputChange', inputContent)">
   </div>
 </template>
 
@@ -10,8 +10,13 @@ export default {
   name: "MainInput",
   props: {
     label: String,
-    inputType: String
-  }
+    inputType: String,
+  },
+  data: function() {
+    return {
+      inputContent: '',
+    };
+  },
 }
 </script>
 

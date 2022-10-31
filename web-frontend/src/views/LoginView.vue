@@ -1,6 +1,7 @@
 <template>
+  <MainInput label="Email" input-type="email" @input-change="emailInputChange"/>
+  <MainInput label="Password" input-type="password" @input-change="passwordInputChange"/>
   <MainButton text="Log in" @button-clicked="loginButtonClick"/>
-  <MainInput label="Email" input-type="password" @input-changed="loginButtonClick"/>
 </template>
 
 <script>
@@ -9,9 +10,18 @@ import MainInput from "@/components/MainInput";
 
 export default {
   name: 'LoginView',
+
   methods: {
+    emailInputChange(email) {
+      console.log(email);
+    },
+
+    passwordInputChange(password) {
+      console.log(password);
+    },
+
     loginButtonClick() {
-      console.log('halo');
+      this.$router.push('/signup')
     }
   },
   components: {
