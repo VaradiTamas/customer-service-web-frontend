@@ -11,19 +11,29 @@ import MainInput from "@/components/MainInput";
 export default {
   name: 'LoginView',
 
+  data: function () {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+
   methods: {
-    emailInputChange(email) {
-      console.log(email);
+    emailInputChange(emailInput) {
+      this.email = emailInput;
     },
 
-    passwordInputChange(password) {
-      console.log(password);
+    passwordInputChange(passwordInput) {
+      this.password = passwordInput
     },
 
     loginButtonClick() {
+      console.log(this.email);
+      console.log(this.password);
       this.$router.push('/signup')
     }
   },
+
   components: {
     MainInput,
     MainButton
