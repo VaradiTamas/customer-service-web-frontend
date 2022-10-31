@@ -1,7 +1,11 @@
 <template>
-  <MainInput label="Email" input-type="email" @input-change="emailInputChange"/>
-  <MainInput label="Password" input-type="password" @input-change="passwordInputChange"/>
-  <MainButton text="Log in" @button-clicked="loginButtonClick"/>
+  <div class="login-view-wrapper">
+    <div class="login-view mt-5">
+      <MainInput class="mt-2" label="Email" input-type="email" @input-change="onEmailInputChange"/>
+      <MainInput class="mt-2" label="Password" input-type="password" @input-change="onPasswordInputChange"/>
+      <MainButton class="mt-4" text="Log in" @button-click="onLoginButtonClick"/>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -19,15 +23,15 @@ export default {
   },
 
   methods: {
-    emailInputChange(emailInput) {
+    onEmailInputChange(emailInput) {
       this.email = emailInput;
     },
 
-    passwordInputChange(passwordInput) {
+    onPasswordInputChange(passwordInput) {
       this.password = passwordInput
     },
 
-    loginButtonClick() {
+    onLoginButtonClick() {
       console.log(this.email);
       console.log(this.password);
       this.$router.push('/signup')
@@ -43,5 +47,15 @@ export default {
 </script>
 
 <style scoped>
+  .login-view-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 
+  .login-view {
+    width: 450px;
+  }
 </style>

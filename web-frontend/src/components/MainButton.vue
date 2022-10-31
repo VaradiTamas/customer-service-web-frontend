@@ -1,6 +1,6 @@
 <template>
   <div class="main-button-wrapper">
-    <button @click="$emit('buttonClicked')">
+    <button @click="$emit('buttonClick')">
       <span>{{ text }}</span>
     </button>
   </div>
