@@ -7,6 +7,11 @@
       <MainButton class="mt-4" text="Sign up" @button-click="onSignupButtonClick"/>
     </div>
   </div>
+
+  <v-dialog class="dialog-wrapper" v-model="dialog">
+    <h1>You have successfully signed up!</h1>
+    <MainButton class="mt-4" text="OK" @button-click="dialog = false"/>
+  </v-dialog>
 </template>
 
 <script>
@@ -21,6 +26,7 @@ export default {
       email: '',
       password: '',
       confirmationPassword: '',
+      dialog: false,
     }
   },
 
@@ -41,6 +47,7 @@ export default {
       console.log(this.email);
       console.log(this.password);
       console.log(this.confirmationPassword);
+      this.dialog = true;
     }
   },
 
@@ -62,5 +69,19 @@ export default {
 
   .signup-view {
     width: 450px;
+  }
+
+  .dialog-wrapper {
+    width: 600px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    background-color: #D9D9D9;
+  }
+
+  h1 {
+    text-align: center;
   }
 </style>
