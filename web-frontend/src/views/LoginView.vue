@@ -37,6 +37,7 @@
       onLoginButtonClick() {
         console.log(this.email);
         console.log(this.password);
+        this.$router.push('/admin');
       }
     },
 
