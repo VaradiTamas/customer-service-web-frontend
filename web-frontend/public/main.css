@@ -8,10 +8,14 @@
 
 .dialog-wrapper {
     width: 600px;
-    height: 200px;
+    height: 600px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
     background-color: beige;
+}
+
+.dialog-element {
+    align-self: center;
 }
