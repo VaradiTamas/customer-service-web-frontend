@@ -8,15 +8,13 @@
     </div>
   </div>
 
-  <v-dialog class="dialog-wrapper" v-model="dialog">
-    <h1>You have successfully signed up!</h1>
-    <MainButton class="mt-button ok-button" text="OK" @button-click="dialog = false"/>
-  </v-dialog>
+  <SignupSuccessDialog v-model="dialog" @close-dialog="dialog = false"/>
 </template>
 
 <script>
   import MainInput from "@/components/MainInput";
   import MainButton from "@/components/MainButton";
+  import SignupSuccessDialog from "@/dialogs/SignupSuccessDialog";
 
   export default {
     name: "SignupView",
@@ -48,10 +46,11 @@
         console.log(this.password);
         console.log(this.confirmationPassword);
         this.dialog = true;
-      }
+      },
     },
 
     components: {
+      SignupSuccessDialog,
       MainButton,
       MainInput,
     }
@@ -69,23 +68,5 @@
 
   .signup-view {
     width: 450px;
-  }
-
-  .dialog-wrapper {
-    width: 600px;
-    height: 200px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    background-color: beige;
-  }
-
-  h1 {
-    text-align: center;
-  }
-
-  .ok-button {
-    align-self: center;
   }
 </style>
