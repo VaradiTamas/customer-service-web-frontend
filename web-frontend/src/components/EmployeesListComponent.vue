@@ -4,24 +4,37 @@
       <div class="list-title">Email</div>
       <div class="list-title">Password</div>
     </div>
-    <div class="list-item-wrapper" v-for="(employee, index) in employees" :key="employee.id">
-      <div class="list-item">{{ employee.email }}</div>
-      <div class="list-item">{{ employee.password }}</div>
-      <div class="list-trash-icon-wrapper">
-        <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteEmployee(index)"/>
+
+    <div class="list-items-wrapper">
+      <div class="list-item-wrapper" v-for="(employee, index) in employees" :key="employee.id">
+        <div class="list-item">{{ employee.email }}</div>
+        <div class="list-item">{{ employee.password }}</div>
+        <div class="list-trash-icon-wrapper">
+          <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteEmployee(index)"/>
+        </div>
       </div>
     </div>
+
+    <div class="list-add-button-wrapper">
+      <MainButton text="Add new employee" @button-click="onAddEmployeeButtonClick"></MainButton>
+    </div>
   </div>
+
+  <AddEmployeeDialog v-model="dialog" @close-dialog="dialog = false"/>
 </template>
 
 <script>
 import { Employee } from "@/models/employee-model";
+import MainButton from "@/components/ButtonComponent";
+import AddEmployeeDialog from "@/dialogs/AddEmployeeDialog";
 
 export default {
   name: "AdminEmployeesComponent",
+  components: {AddEmployeeDialog, MainButton},
   data: function() {
     return {
       employees: [],
+      dialog: false,
     };
   },
   methods: {
@@ -38,6 +51,9 @@ export default {
     },
     onDeleteEmployee(index) {
       this.employees.splice(index, 1);
+    },
+    onAddEmployeeButtonClick() {
+      this.dialog = true;
     }
   },
   beforeMount(){
@@ -55,19 +71,25 @@ export default {
     background-color: #D9D9D9;
     padding: 2rem;
     position: relative;
-    overflow: auto;
   }
 
   .list-title-wrapper {
     display: flex;
     flex-direction: row;
     margin-bottom: 3rem;
+    height: 20%;
   }
 
   .list-title {
     font-size: 20px;
     font-weight: bold;
     width: 45%;
+  }
+
+  .list-items-wrapper {
+    width: 100%;
+    height: 50%;
+    overflow: auto;
   }
 
   .list-item-wrapper {
@@ -90,5 +112,12 @@ export default {
     height: 30px;
     float: right;
     cursor: pointer;
+  }
+
+  .list-add-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 30%;
   }
 </style>
