@@ -4,8 +4,8 @@
       <h1>Telekom customer service</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg"/>
       <div class="menu-wrapper mt-8">
-        <span class="menu-item"><u>Employees</u></span>
-        <span class="menu-item ml-10"><u>Service types</u></span>
+        <router-link :to="'/admin/employees'" class="menu-item"><u>Employees</u></router-link>
+        <router-link :to="'/admin/service-types'" class="menu-item ml-10"><u>Service types</u></router-link>
       </div>
       <div>
         <router-view></router-view>
@@ -47,5 +47,10 @@
 
   .menu-item {
     font-size: 25px;
+    color: black;
+  }
+
+  .router-link-active {
+    font-weight: 700;
   }
 </style>
