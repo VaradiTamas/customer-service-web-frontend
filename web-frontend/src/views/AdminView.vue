@@ -1,7 +1,9 @@
 <template>
   <div class="admin-view-wrapper">
+    <div class="logout-link"><u>Log out</u></div>
+
     <div class="header-wrapper">
-      <h1 class="pt-5">Telekom customer service</h1>
+      <h1 class="pt-7">Telekom customer service</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg"/>
       <div class="menu-wrapper mt-8">
         <router-link :to="'/admin/employees'" class="menu-item"><u>Employees</u></router-link>
@@ -22,6 +24,15 @@
 </script>
 
 <style scoped>
+  .logout-link {
+    cursor: pointer;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
   .admin-view-wrapper {
     width: 100vw;
     height: 100vh;
