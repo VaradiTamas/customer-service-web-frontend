@@ -12,8 +12,8 @@
 </template>
 
 <script>
-  import MainButton from '@/components/MainButton.vue';
-  import MainInput from "@/components/MainInput";
+  import MainButton from '@/components/ButtonComponent.vue';
+  import MainInput from "@/components/InputComponent";
 
   export default {
     name: 'LoginView',

@@ -39,6 +39,7 @@
     width: 50px;
     height: 50px;
     align-self: center;
+    cursor: pointer;
   }
 
   .menu-wrapper {

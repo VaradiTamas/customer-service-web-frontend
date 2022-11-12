@@ -12,8 +12,8 @@
 </template>
 
 <script>
-  import MainInput from "@/components/MainInput";
-  import MainButton from "@/components/MainButton";
+  import MainInput from "@/components/InputComponent";
+  import MainButton from "@/components/ButtonComponent";
   import SignupSuccessDialog from "@/dialogs/SignupSuccessDialog";
 
   export default {

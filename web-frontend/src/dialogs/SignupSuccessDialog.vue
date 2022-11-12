@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import MainButton from "@/components/MainButton";
+  import MainButton from "@/components/ButtonComponent";
 
   export default {
     name: "SignupSuccessDialog",

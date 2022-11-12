@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import MainButton from "@/components/MainButton";
-import MainInput from "@/components/MainInput";
+import MainButton from "@/components/ButtonComponent";
+import MainInput from "@/components/InputComponent";
 
 export default {
   name: "AddEmployeeDialog",

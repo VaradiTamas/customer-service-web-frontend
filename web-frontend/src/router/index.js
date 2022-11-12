@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import LoginView from "@/views/LoginView";
 import SignupView from "@/views/SignupView";
 import AdminView from "@/views/AdminView";
-import AdminEmployeesComponent from "@/components/AdminEmployeesComponent";
-import AdminServiceTypesComponent from "@/components/AdminServiceTypesComponent";
+import AdminEmployeesComponent from "@/components/EmployeesListComponent";
+import AdminServiceTypesComponent from "@/components/ServiceTypesListComponent";
 
 const routes = [
     { path: '/', name: 'Home', component: LoginView },
