@@ -7,7 +7,7 @@
         <router-link :to="'/admin/employees'" class="menu-item"><u>Employees</u></router-link>
         <router-link :to="'/admin/service-types'" class="menu-item ml-10"><u>Service types</u></router-link>
       </div>
-      <div>
+      <div class="main-content-wrapper">
         <router-view></router-view>
       </div>
     </div>
@@ -49,6 +49,14 @@
   .menu-item {
     font-size: 25px;
     color: black;
+  }
+
+  .main-content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
   }
 
   .router-link-active {
