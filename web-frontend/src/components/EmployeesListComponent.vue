@@ -16,11 +16,11 @@
     </div>
 
     <div class="list-add-button-wrapper">
-      <MainButton text="Add new employee" @button-click="onAddEmployeeButtonClick"></MainButton>
+      <MainButton class="mt-button" text="Add new employee" @button-click="this.dialog = true;"></MainButton>
     </div>
   </div>
 
-  <AddEmployeeDialog v-model="dialog" @close-dialog="dialog = false"/>
+  <AddEmployeeDialog v-model="dialog" @close-dialog="dialog = false" @add-employee="onAddEmployee"/>
 </template>
 
 <script>
@@ -42,18 +42,12 @@ export default {
       this.employees.push(new Employee('sdasdkalsdjlkasdlkas', 'peldaemail1@esdas.com', 'valami1'));
       this.employees.push(new Employee('dasdallalasásédlasád', 'peldaemail2@assada.com', 'valami2'));
       this.employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-      this.employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-      this.employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-      this.employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-      this.employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-      this.employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-      this.employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
     },
     onDeleteEmployee(index) {
       this.employees.splice(index, 1);
     },
-    onAddEmployeeButtonClick() {
-      this.dialog = true;
+    onAddEmployee(email) {
+      this.employees.push(new Employee('sadkskaédkasédlséldk', email, 'valami3'));
     }
   },
   beforeMount(){
@@ -76,8 +70,7 @@ export default {
   .list-title-wrapper {
     display: flex;
     flex-direction: row;
-    margin-bottom: 3rem;
-    height: 20%;
+    height: 15%;
   }
 
   .list-title {
@@ -88,7 +81,7 @@ export default {
 
   .list-items-wrapper {
     width: 100%;
-    height: 50%;
+    height: 70%;
     overflow: auto;
   }
 
@@ -105,6 +98,7 @@ export default {
 
   .list-trash-icon-wrapper {
     width: 10%;
+    padding-right: 1rem;
   }
 
   .list-trash-icon {
@@ -118,6 +112,6 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 30%;
+    height: 15%;
   }
 </style>

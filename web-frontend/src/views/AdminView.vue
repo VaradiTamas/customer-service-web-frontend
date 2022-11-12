@@ -1,15 +1,16 @@
 <template>
   <div class="admin-view-wrapper">
-    <div class="admin-view">
-      <h1 class="mt-5">Telekom customer service</h1>
+    <div class="header-wrapper">
+      <h1 class="pt-5">Telekom customer service</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg"/>
       <div class="menu-wrapper mt-8">
         <router-link :to="'/admin/employees'" class="menu-item"><u>Employees</u></router-link>
         <router-link :to="'/admin/service-types'" class="menu-item ml-10"><u>Service types</u></router-link>
       </div>
-      <div class="main-content-wrapper">
-        <router-view></router-view>
-      </div>
+    </div>
+
+    <div class="main-content-wrapper">
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -22,14 +23,16 @@
 
 <style scoped>
   .admin-view-wrapper {
-    width: 100%;
-    height: 100%;
-  }
-
-  .admin-view {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    height: 100%;
+  }
+
+  .header-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 25vh;
     width: 100%;
   }
 
@@ -55,11 +58,10 @@
 
   .main-content-wrapper {
     width: 100%;
-    height: 100%;
+    height: 75vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 1rem;
   }
 
   .router-link-active {
