@@ -8,15 +8,14 @@
       <div class="list-item">{{ employee.email }}</div>
       <div class="list-item">{{ employee.password }}</div>
       <div class="list-trash-icon-wrapper">
-        <img class="list-trash-icon" src="/icons/trash.svg"/>
-        <div>{{index}}</div>
+        <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteEmployee(index)"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {Employee} from "@/models/employee-model";
+import { Employee } from "@/models/employee-model";
 
 export default {
   name: "AdminEmployeesComponent",
@@ -27,9 +26,12 @@ export default {
   },
   methods: {
     getEmployeesData() {
-      this.employees.push(new Employee('valami', 'valami2', 'valami3'));
-      this.employees.push(new Employee('valami', 'valami2', 'valami3'));
-      this.employees.push(new Employee('valami', 'valami2', 'valami3'));
+      this.employees.push(new Employee('sdasdkalsdjlkasdlkas', 'peldaemail1@esdas.com', 'valami1'));
+      this.employees.push(new Employee('dasdallalasásédlasád', 'peldaemail2@assada.com', 'valami2'));
+      this.employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
+    },
+    onDeleteEmployee(index) {
+      this.employees.splice(index, 1);
     }
   },
   beforeMount(){
