@@ -1,7 +1,7 @@
 <template>
   <div class="admin-view-wrapper">
-    <div class="admin-view mt-5">
-      <h1>Telekom customer service</h1>
+    <div class="admin-view">
+      <h1 class="mt-5">Telekom customer service</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg"/>
       <div class="menu-wrapper mt-8">
         <router-link :to="'/admin/employees'" class="menu-item"><u>Employees</u></router-link>
@@ -53,6 +53,7 @@
 
   .main-content-wrapper {
     width: 100%;
+    height: 400px;
     display: flex;
     flex-direction: row;
     justify-content: center;
