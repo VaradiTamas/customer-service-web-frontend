@@ -13,7 +13,8 @@ import MainInput from "@/components/InputComponent";
 import MainButton from "@/components/ButtonComponent";
 export default {
   name: "AddServiceTypeDialog",
-  components: {MainButton, MainInput},
+  components: { MainButton, MainInput },
+
   data: function () {
     return {
       name: '',

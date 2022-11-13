@@ -31,6 +31,7 @@ import {ServiceType} from "@/models/service-type-model";
 export default {
   name: "AdminServiceTypesComponent",
   components: { AddServiceTypeDialog, MainButton },
+
   data: function() {
     return {
       serviceTypes: [],
