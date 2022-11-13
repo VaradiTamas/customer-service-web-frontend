@@ -1,6 +1,6 @@
 <template>
   <div class="admin-view-wrapper">
-    <div class="logout-link"><u>Log out</u></div>
+    <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
 
     <div class="header-wrapper">
       <h1 class="pt-7">Telekom customer service</h1>

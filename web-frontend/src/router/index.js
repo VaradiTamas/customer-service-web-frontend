@@ -11,6 +11,7 @@ const routes = [
     { path: '/signup', name: 'Signup', component: SignupView },
     { path: '/admin', name: 'Admin', component: AdminView,
         children: [
+            { path: '', redirect: { name: 'AdminEmployees' } },
             { path: 'employees', name: 'AdminEmployees', component: AdminEmployeesComponent },
             { path: 'service-types', name: 'AdminServiceTypes', component: AdminServiceTypesComponent },
         ]
