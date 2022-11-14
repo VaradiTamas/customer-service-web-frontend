@@ -1,15 +1,23 @@
 <template>
   <div class="owner-view-wrapper">
-    <h1 class="mt-16">Customer services</h1>
-    <div class="list-wrapper mt-16">
-      <div class="customer-service-list-item" v-for="(customerService, index) in customerServices" :key="customerService.id">
-        <div class="customer-service-list-name">{{ customerService.name }}</div>
-        <div class="list-trash-icon-wrapper">
-          <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteCustomerService(index)"/>
+    <h1>Customer services</h1>
+    <div class="list-wrapper list-height">
+      <div class="customer-service-list-items-wrapper">
+        <div class="customer-service-list-item mt-3" v-for="(customerService, index) in customerServices" :key="customerService.id">
+          <div class="customer-service-list-name">{{ customerService.name }}</div>
+          <div class="list-trash-icon-wrapper">
+            <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteCustomerService(index)"/>
+          </div>
         </div>
+      </div>
+
+      <div class="list-add-button-wrapper">
+        <MainButton class="mt-6" text="Add new customer service" @button-click="this.dialog = true;"></MainButton>
       </div>
     </div>
   </div>
+
+  <AddCustomerServiceDialog v-model="dialog" @close-dialog="dialog = false" @add-customer-service="onAddCustomerService"></AddCustomerServiceDialog>
 </template>
 
 <script>
@@ -17,9 +25,12 @@ import { ServiceType } from "@/models/service-type-model";
 import { Employee } from "@/models/employee-model";
 import { CustomerService } from "@/models/customer-service-model";
 import { Admin } from "@/models/admin-model";
+import MainButton from "@/components/ButtonComponent";
+import AddCustomerServiceDialog from "@/dialogs/AddCustomerServiceDialog";
 
 export default {
   name: "CustomerServiceListView",
+  components: {AddCustomerServiceDialog, MainButton },
 
   data: function() {
     return {
@@ -52,6 +63,8 @@ export default {
       this.customerServices.push(new CustomerService('randomid1', 'Telekom customer service1', serviceTypes, employees, admins));
       this.customerServices.push(new CustomerService('randomid2', 'Telekom customer service2', serviceTypes, employees, admins));
       this.customerServices.push(new CustomerService('randomid3', 'Telekom customer service3', serviceTypes, employees, admins));
+      this.customerServices.push(new CustomerService('randomid3', 'Telekom customer service3', serviceTypes, employees, admins));
+      this.customerServices.push(new CustomerService('randomid3', 'Telekom customer service3', serviceTypes, employees, admins));
     },
     onDeleteCustomerService(index) {
       this.customerServices.splice(index, 1);
@@ -64,15 +77,27 @@ export default {
 </script>
 
 <style scoped>
-  h1 {
-    align-self: center;
-  }
-
   .owner-view-wrapper {
     height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
+  }
+
+  h1 {
+    padding-top: 4rem;
+    align-self: center;
+    text-align: center;
+    height: 25vh;
+  }
+
+  .list-height {
+    height: 75%;
+  }
+
+  .customer-service-list-items-wrapper {
+    height: 85%;
+    overflow: auto;
   }
 
   .customer-service-list-item {
