@@ -1,4 +1,6 @@
 <template>
+  <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
+
   <div class="owner-view-wrapper">
     <h1>Customer services</h1>
     <div class="list-wrapper list-height">

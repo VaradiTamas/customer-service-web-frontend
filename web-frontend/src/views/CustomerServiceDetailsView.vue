@@ -1,4 +1,8 @@
 <template>
+  <router-link :to="'/owner'">
+    <img class="home-icon" src="/icons/home.svg"/>
+  </router-link>
+
   <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
 
   <div class="customer-service-view-wrapper">
@@ -60,6 +64,13 @@ export default {
 </script>
 
 <style scoped>
+  .home-icon {
+    cursor: pointer;
+    position: fixed;
+    left: 2rem;
+    top: 2rem;
+  }
+
   .customer-service-view-wrapper {
     width: 100vw;
     height: 100vh;
