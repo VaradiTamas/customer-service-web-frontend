@@ -59,15 +59,6 @@
 </script>
 
 <style scoped>
-  .logout-link {
-    cursor: pointer;
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    font-size: 20px;
-    font-weight: 500;
-  }
-
   .admin-view-wrapper {
     width: 100vw;
     height: 100vh;
@@ -108,9 +99,5 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-  }
-
-  .router-link-active {
-    font-weight: 700;
   }
 </style>

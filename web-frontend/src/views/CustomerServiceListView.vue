@@ -4,7 +4,7 @@
     <div class="list-wrapper list-height">
       <div class="customer-service-list-items-wrapper">
         <div class="customer-service-list-item mt-3" v-for="(customerService, index) in customerServices" :key="customerService.id">
-          <div class="customer-service-list-name">{{ customerService.name }}</div>
+          <div class="customer-service-list-name" @click="onCustomerServiceClick(index)">{{ customerService.name }}</div>
           <div class="list-trash-icon-wrapper">
             <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteCustomerService(index)"/>
           </div>
@@ -66,6 +66,9 @@ export default {
       this.customerServices.push(new CustomerService('randomid3', 'Telekom customer service3', serviceTypes, employees, admins));
       this.customerServices.push(new CustomerService('randomid3', 'Telekom customer service3', serviceTypes, employees, admins));
     },
+    onCustomerServiceClick(index) {
+      this.$router.push(`/owner/customer-service/${this.customerServices[index].id}`);
+    },
     onDeleteCustomerService(index) {
       this.customerServices.splice(index, 1);
     },
@@ -107,5 +110,6 @@ export default {
 
   .customer-service-list-name {
     width: 90%;
+    cursor: pointer;
   }
 </style>

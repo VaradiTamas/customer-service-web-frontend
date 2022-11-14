@@ -30,13 +30,15 @@ import AddEmployeeDialog from "@/dialogs/AddEmployeeDialog";
 
 export default {
   name: "AdminEmployeesComponent",
-  components: {AddEmployeeDialog, MainButton},
+  components: { AddEmployeeDialog, MainButton },
+
   data: function() {
     return {
       employees: [],
       dialog: false,
     };
   },
+
   methods: {
     getEmployeesData() {
       this.employees.push(new Employee('sdasdkalsdjlkasdlkas', 'peldaemail1@esdas.com', 'valami1'));

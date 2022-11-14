@@ -2,10 +2,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import LoginView from "@/views/LoginView";
 import SignupView from "@/views/SignupView";
 import AdminView from "@/views/AdminView";
-import AdminEmployeesComponent from "@/components/EmployeesListComponent";
-import AdminServiceTypesComponent from "@/components/ServiceTypesListComponent";
 import CustomerServiceListView from "@/views/CustomerServiceListView";
 import CustomerServiceDetailsView from "@/views/CustomerServiceDetailsView";
+import EmployeesListComponent from "@/components/EmployeesListComponent";
+import ServiceTypesListComponent from "@/components/ServiceTypesListComponent";
+import AdminsListComponent from "@/components/AdminsListComponent";
 
 const routes = [
     { path: '/', name: 'Home', component: LoginView },
@@ -14,17 +15,17 @@ const routes = [
     { path: '/admin', name: 'Admin', component: AdminView,
         children: [
             { path: '', redirect: { name: 'AdminEmployees' } },
-            { path: 'employees', name: 'AdminEmployees', component: AdminEmployeesComponent },
-            { path: 'service-types', name: 'AdminServiceTypes', component: AdminServiceTypesComponent },
+            { path: 'employees', name: 'AdminEmployees', component: EmployeesListComponent },
+            { path: 'service-types', name: 'AdminServiceTypes', component: ServiceTypesListComponent },
         ]
     },
     { path: '/owner', name: 'OwnerCustomerServiceList', component: CustomerServiceListView },
-    { path: '/owner/customer-service', name: 'OwnerCustomerServiceDetails', component: CustomerServiceDetailsView,
+    { path: '/owner/customer-service/:id', name: 'OwnerCustomerServiceDetails', component: CustomerServiceDetailsView,
         children: [
             { path: '', redirect: { name: 'OwnerEmployeesList' } },
-            { path: 'employees', name: 'OwnerEmployeesList', component: AdminEmployeesComponent },
-            { path: 'service-types', name: 'OwnerServiceTypesList', component: AdminServiceTypesComponent },
-            { path: 'administrators', name: 'OwnerAdministratorsList', component: AdminServiceTypesComponent },
+            { path: 'employees', name: 'OwnerEmployeesList', component: EmployeesListComponent },
+            { path: 'service-types', name: 'OwnerServiceTypesList', component: ServiceTypesListComponent },
+            { path: 'administrators', name: 'OwnerAdministratorsList', component: AdminsListComponent },
         ]
     },
 ]
