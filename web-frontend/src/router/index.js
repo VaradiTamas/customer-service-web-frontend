@@ -7,6 +7,7 @@ import CustomerServiceDetailsView from "@/views/CustomerServiceDetailsView";
 import EmployeesListComponent from "@/components/EmployeesListComponent";
 import ServiceTypesListComponent from "@/components/ServiceTypesListComponent";
 import AdminsListComponent from "@/components/AdminsListComponent";
+import EmployeeView from "@/views/EmployeeView";
 
 const routes = [
     { path: '/', name: 'Home', component: LoginView },
@@ -28,6 +29,7 @@ const routes = [
             { path: 'administrators', name: 'OwnerAdministratorsList', component: AdminsListComponent },
         ]
     },
+    { path: '/employee', name: 'EmployeeView', component: EmployeeView },
 ]
 
 const router = createRouter({
