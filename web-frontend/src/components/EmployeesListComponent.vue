@@ -52,7 +52,6 @@ export default {
       this.employees.push(new Employee('sadkskaédkasédlséldk', email, 'valami3'));
     }
   },
-
   beforeMount(){
     this.getEmployeesData();
   }
