@@ -1,18 +1,18 @@
 <template>
   <v-dialog class="dialog-wrapper">
     <h1>You have successfully signed up!</h1>
-    <MainButton class="mt-button ok-button" text="OK" @button-click="$emit('closeDialog')"/>
+    <ButtonComponent class="mt-button ok-button" text="OK" @button-click="$emit('closeDialog')"/>
   </v-dialog>
 </template>
 
 <script>
-  import MainButton from "@/components/ButtonComponent";
+  import ButtonComponent from "@/components/ButtonComponent";
 
   export default {
     name: "SignupSuccessDialog",
 
     components: {
-      MainButton
+      ButtonComponent
     },
   }
 </script>

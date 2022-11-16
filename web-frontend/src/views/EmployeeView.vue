@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <MainButton class="next-customer-button" text="Next customer" @button-click="onNextCustomerButtonClick"></MainButton>
+    <ButtonComponent class="next-customer-button" text="Next customer" @button-click="onNextCustomerButtonClick"></ButtonComponent>
   </div>
 
   <QRCodeDialog v-model="dialog" @close-dialog="dialog = false"/>
@@ -27,10 +27,10 @@ import { ServiceType } from "@/models/service-type-model";
 import { Employee } from "@/models/employee-model";
 import { CustomerService } from "@/models/customer-service-model";
 import { Ticket } from "@/models/ticket-model";
-import MainButton from "@/components/ButtonComponent";
+import ButtonComponent from "@/components/ButtonComponent";
 export default {
   name: "EmployeeView",
-  components: { MainButton, QRCodeDialog },
+  components: { ButtonComponent, QRCodeDialog },
 
   data: function() {
     return {

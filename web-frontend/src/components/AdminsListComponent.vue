@@ -16,7 +16,7 @@
     </div>
 
     <div class="list-add-button-wrapper">
-      <MainButton class="mt-button" text="Add new admin" @button-click="this.dialog = true;"></MainButton>
+      <ButtonComponent class="mt-button" text="Add new admin" @button-click="this.dialog = true;"></ButtonComponent>
     </div>
   </div>
 
@@ -24,13 +24,14 @@
 </template>
 
 <script>
-import MainButton from "@/components/ButtonComponent";
+import ButtonComponent from "@/components/ButtonComponent";
 import { Admin } from "@/models/admin-model";
 import AddAdminDialog from "@/dialogs/AddAdminDialog";
 
 export default {
   name: "AdminsListComponent",
-  components: {AddAdminDialog, MainButton},
+  components: { AddAdminDialog, ButtonComponent},
+
   data: function() {
     return {
       admins: [],

@@ -4,15 +4,15 @@
 
     <img class="qr-code-icon mt-4" src="/icons/qr-code.svg"/>
 
-    <MainButton class="mt-button dialog-element" text="OK" @button-click="$emit('closeDialog')"/>
+    <ButtonComponent class="mt-button dialog-element" text="OK" @button-click="$emit('closeDialog')"/>
   </v-dialog>
 </template>
 
 <script>
-import MainButton from "@/components/ButtonComponent";
+import ButtonComponent from "@/components/ButtonComponent";
 export default {
   name: "QRCodeDialog",
-  components: { MainButton }
+  components: { ButtonComponent }
 }
 </script>
 

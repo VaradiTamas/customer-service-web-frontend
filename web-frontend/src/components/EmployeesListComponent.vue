@@ -16,7 +16,7 @@
     </div>
 
     <div class="list-add-button-wrapper">
-      <MainButton class="mt-button" text="Add new employee" @button-click="this.dialog = true;"></MainButton>
+      <ButtonComponent class="mt-button" text="Add new employee" @button-click="this.dialog = true;"></ButtonComponent>
     </div>
   </div>
 
@@ -25,12 +25,12 @@
 
 <script>
 import { Employee } from "@/models/employee-model";
-import MainButton from "@/components/ButtonComponent";
+import ButtonComponent from "@/components/ButtonComponent";
 import AddEmployeeDialog from "@/dialogs/AddEmployeeDialog";
 
 export default {
   name: "AdminEmployeesComponent",
-  components: { AddEmployeeDialog, MainButton },
+  components: { AddEmployeeDialog, ButtonComponent },
 
   data: function() {
     return {
@@ -52,6 +52,7 @@ export default {
       this.employees.push(new Employee('sadkskaédkasédlséldk', email, 'valami3'));
     }
   },
+
   beforeMount(){
     this.getEmployeesData();
   }

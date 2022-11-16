@@ -16,7 +16,7 @@
     </div>
 
     <div class="list-add-button-wrapper">
-      <MainButton class="mt-button" text="Add new service type" @button-click="this.dialog = true;"></MainButton>
+      <ButtonComponent class="mt-button" text="Add new service type" @button-click="this.dialog = true;"></ButtonComponent>
     </div>
   </div>
 
@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import MainButton from "@/components/ButtonComponent";
+import ButtonComponent from "@/components/ButtonComponent";
 import AddServiceTypeDialog from "@/dialogs/AddServiceTypeDialog";
 import {ServiceType} from "@/models/service-type-model";
 
 export default {
   name: "AdminServiceTypesComponent",
-  components: { AddServiceTypeDialog, MainButton },
+  components: { AddServiceTypeDialog, ButtonComponent },
 
   data: function() {
     return {
@@ -38,6 +38,7 @@ export default {
       dialog: false,
     };
   },
+
   methods: {
     getServiceTypesData() {
       this.serviceTypes.push(new ServiceType('sdasdkalsdjlkasdlkas', 'name1', 11111));
@@ -51,6 +52,7 @@ export default {
       this.serviceTypes.push(new ServiceType('sadkskaédkasédlséldk', name, avgCompletionTime));
     }
   },
+
   beforeMount() {
     this.getServiceTypesData();
     console.log(this.serviceTypes)

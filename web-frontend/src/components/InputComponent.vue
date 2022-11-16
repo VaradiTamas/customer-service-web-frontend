@@ -1,17 +1,19 @@
 <template>
-  <div class="main-input-wrapper">
-    <div class="main-input-label">{{ label }}</div>
+  <div class="input-wrapper">
+    <div class="input-label">{{ label }}</div>
     <input :type="inputType" v-model="inputContent" @input="$emit('inputChange', inputContent)">
   </div>
 </template>
 
 <script>
 export default {
-  name: "MainInput",
+  name: "InputComponent",
+
   props: {
     label: String,
     inputType: String,
   },
+
   data: function() {
     return {
       inputContent: '',
@@ -21,13 +23,13 @@ export default {
 </script>
 
 <style scoped>
-  .main-input-wrapper {
+  .input-wrapper {
     width: 450px;
     margin: 0;
     padding: 0;
   }
 
-  .main-input-label {
+  .input-label {
     text-align: left;
     margin-bottom: 5px;
     font-size: 20px;

@@ -14,7 +14,7 @@
       </div>
 
       <div class="list-add-button-wrapper">
-        <MainButton class="mt-6" text="Add new customer service" @button-click="this.dialog = true;"></MainButton>
+        <ButtonComponent class="mt-6" text="Add new customer service" @button-click="this.dialog = true;"></ButtonComponent>
       </div>
     </div>
   </div>
@@ -27,12 +27,12 @@ import { ServiceType } from "@/models/service-type-model";
 import { Employee } from "@/models/employee-model";
 import { CustomerService } from "@/models/customer-service-model";
 import { Admin } from "@/models/admin-model";
-import MainButton from "@/components/ButtonComponent";
+import ButtonComponent from "@/components/ButtonComponent";
 import AddCustomerServiceDialog from "@/dialogs/AddCustomerServiceDialog";
 
 export default {
   name: "CustomerServiceListView",
-  components: {AddCustomerServiceDialog, MainButton },
+  components: { AddCustomerServiceDialog, ButtonComponent },
 
   data: function() {
     return {

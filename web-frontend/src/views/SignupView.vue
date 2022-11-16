@@ -1,10 +1,10 @@
 <template>
   <div class="signup-view-wrapper">
     <div class="signup-view mt-5">
-      <MainInput class="mt-1" label="Email" input-type="email" @input-change="onEmailInputChange"/>
-      <MainInput class="mt-1" label="Password" input-type="password" @input-change="onPasswordInputChange"/>
-      <MainInput class="mt-1" label="Confirm password" input-type="password" @input-change="onConfirmationPasswordInputChange"/>
-      <MainButton class="mt-button" text="Sign up" @button-click="onSignupButtonClick"/>
+      <InputComponent class="mt-1" label="Email" input-type="email" @input-change="onEmailInputChange"/>
+      <InputComponent class="mt-1" label="Password" input-type="password" @input-change="onPasswordInputChange"/>
+      <InputComponent class="mt-1" label="Confirm password" input-type="password" @input-change="onConfirmationPasswordInputChange"/>
+      <ButtonComponent class="mt-button" text="Sign up" @button-click="onSignupButtonClick"/>
     </div>
   </div>
 
@@ -12,12 +12,17 @@
 </template>
 
 <script>
-  import MainInput from "@/components/InputComponent";
-  import MainButton from "@/components/ButtonComponent";
+  import InputComponent from "@/components/InputComponent";
+  import ButtonComponent from "@/components/ButtonComponent";
   import SignupSuccessDialog from "@/dialogs/SignupSuccessDialog";
 
   export default {
     name: "SignupView",
+    components: {
+      SignupSuccessDialog,
+      ButtonComponent,
+      InputComponent,
+    },
 
     data: function () {
       return {
@@ -48,12 +53,6 @@
         this.dialog = true;
       },
     },
-
-    components: {
-      SignupSuccessDialog,
-      MainButton,
-      MainInput,
-    }
   }
 </script>
 

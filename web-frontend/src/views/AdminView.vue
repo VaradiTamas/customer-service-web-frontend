@@ -21,9 +21,9 @@
 
 <script>
   import QRCodeDialog from "@/dialogs/QRCodeDialog";
-  import {ServiceType} from "@/models/service-type-model";
-  import {Employee} from "@/models/employee-model";
-  import {CustomerService} from "@/models/customer-service-model";
+  import { ServiceType } from "@/models/service-type-model";
+  import { Employee } from "@/models/employee-model";
+  import { CustomerService } from "@/models/customer-service-model";
   export default {
     name: "AdminView",
     components: { QRCodeDialog },

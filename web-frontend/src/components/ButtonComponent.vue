@@ -1,5 +1,5 @@
 <template>
-  <div class="main-button-wrapper">
+  <div class="button-wrapper">
     <button @click="$emit('buttonClick')">
       <span>{{ text }}</span>
     </button>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'MainButton',
+  name: 'ButtonComponent',
   props: {
     text: String
   }
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped>
-  .main-button-wrapper {
+  .button-wrapper {
     width: 450px;
     height: 55px;
   }
