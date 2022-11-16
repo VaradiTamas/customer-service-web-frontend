@@ -24,7 +24,7 @@ export default {
   button {
     width: 450px;
     height: 55px;
-    background: #D9D9D9;
+    background: cornflowerblue;
     border: 2px solid #000000;
     border-radius: 5px;
     cursor: pointer;

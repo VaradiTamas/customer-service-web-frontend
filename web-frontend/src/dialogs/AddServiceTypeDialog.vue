@@ -1,10 +1,12 @@
 <template>
   <v-dialog class="dialog-wrapper">
-    <h1>Add a new employee</h1>
-    <InputComponent class="mt-5 dialog-element" label="Service type name" input-type="text" @input-change="onNameChange"/>
-    <InputComponent class="mt-5 dialog-element" label="Estimated completion time" input-type="number" @input-change="onAvgCompletionTimeChange"/>
-    <ButtonComponent class="mt-button dialog-element" text="Add service type" @button-click="$emit('addServiceType', this.name, this.avgCompletionTime); $emit('closeDialog')"/>
-    <ButtonComponent class="mt-button dialog-element" text="Cancel" @button-click="$emit('closeDialog')"/>
+    <div class="dialog-content">
+      <h1 class="dialog-element">Add a new service type</h1>
+      <InputComponent class="mt-8 dialog-element" label="Service type name" input-type="text" @input-change="onNameChange"/>
+      <InputComponent class="mt-5 dialog-element" label="Estimated completion time" input-type="number" @input-change="onAvgCompletionTimeChange"/>
+      <ButtonComponent class="mt-button dialog-element" text="Add service type" @button-click="$emit('addServiceType', this.name, this.avgCompletionTime); $emit('closeDialog')"/>
+      <ButtonComponent class="mt-5 dialog-element" text="Cancel" @button-click="$emit('closeDialog')"/>
+    </div>
   </v-dialog>
 </template>
 

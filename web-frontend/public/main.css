@@ -8,12 +8,20 @@
 
 .dialog-wrapper {
     width: 600px;
-    height: 600px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.dialog-content {
+    position: relative;
+    left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-content: center;
-    background-color: beige;
+    background-color: lightblue;
+    padding: 2rem;
 }
 
 .dialog-element {

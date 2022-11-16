@@ -1,10 +1,10 @@
 <template>
   <v-dialog class="dialog-wrapper">
-    <h1>Telekom pelda cucc</h1>
-
-    <img class="qr-code-icon mt-4" src="/icons/qr-code.svg"/>
-
-    <ButtonComponent class="mt-button dialog-element" text="OK" @button-click="$emit('closeDialog')"/>
+    <div class="dialog-content">
+      <h1 class="dialog-element">Telekom pelda cucc</h1>
+      <img class="dialog-element qr-code-icon mt-4" src="/icons/qr-code.svg"/>
+      <ButtonComponent class="dialog-element mt-button" text="OK" @button-click="$emit('closeDialog')"/>
+    </div>
   </v-dialog>
 </template>
 
@@ -17,14 +17,9 @@ export default {
 </script>
 
 <style scoped>
-  h1 {
-    text-align: center;
-  }
-
   .qr-code-icon {
     width: 250px;
     height: 250px;
-    align-self: center;
     cursor: pointer;
   }
 </style>

@@ -1,7 +1,9 @@
 <template>
   <v-dialog class="dialog-wrapper">
-    <h1>You have successfully signed up!</h1>
-    <ButtonComponent class="mt-button ok-button" text="OK" @button-click="$emit('closeDialog')"/>
+    <div class="dialog-content">
+      <h1 class="dialog-element">You have successfully signed up!</h1>
+      <ButtonComponent class="dialog-element mt-button" text="OK" @button-click="$emit('closeDialog')"/>
+    </div>
   </v-dialog>
 </template>
 
@@ -10,7 +12,6 @@
 
   export default {
     name: "SignupSuccessDialog",
-
     components: {
       ButtonComponent
     },
@@ -18,11 +19,5 @@
 </script>
 
 <style scoped>
-  h1 {
-    text-align: center;
-  }
 
-  .ok-button {
-    align-self: center;
-  }
 </style>
