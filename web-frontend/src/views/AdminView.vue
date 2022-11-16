@@ -6,8 +6,8 @@
       <h1 class="pt-7">Telekom customer service</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="this.dialog = true;"/>
       <div class="menu-wrapper mt-8">
-        <router-link :to="'/admin/employees'" class="menu-item"><u>Employees</u></router-link>
-        <router-link :to="'/admin/service-types'" class="menu-item ml-10"><u>Service types</u></router-link>
+        <router-link :to="'/admin/employees'" class="menu-item">Employees</router-link>
+        <router-link :to="'/admin/service-types'" class="menu-item ml-10">Service types</router-link>
       </div>
     </div>
 
@@ -42,6 +42,10 @@
 
     methods: {
       getCustomerServiceData() {
+        this.axios.get("https://api.openweathermap.org/data/2.5/weather?lat=47.1234&lon=57.3445&appid=107eca7031d101001ab347376dbe2747").then((response) => {
+          console.log(response.data)
+        });
+
         const serviceTypes = [];
         serviceTypes.push(new ServiceType('sdasdkalsdjlkasdlkas', 'name1', 11111));
         serviceTypes.push(new ServiceType('dasdallalasásédlasád', 'name2', 222222));
@@ -91,6 +95,7 @@
   .menu-item {
     font-size: 25px;
     color: black;
+    text-decoration: none;
   }
 
   .main-content-wrapper {

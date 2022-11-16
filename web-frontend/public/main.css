@@ -22,6 +22,7 @@
     align-content: center;
     background-color: lightblue;
     padding: 2rem;
+    border-radius: 1rem;
 }
 
 .dialog-element {
@@ -93,8 +94,11 @@
     right: 2rem;
     font-size: 20px;
     font-weight: 500;
+    color: cornflowerblue;
 }
 
 .router-link-active {
     font-weight: 700;
+    color: cornflowerblue!important;
+    text-decoration: underline!important;
 }

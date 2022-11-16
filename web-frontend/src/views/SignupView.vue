@@ -1,6 +1,7 @@
 <template>
   <div class="signup-view-wrapper">
-    <div class="signup-view mt-5">
+    <h1 class="mt-16">Signup as a company owner</h1>
+    <div class="signup-view mt-16">
       <InputComponent class="mt-1" label="Email" input-type="email" @input-change="onEmailInputChange"/>
       <InputComponent class="mt-1" label="Password" input-type="password" @input-change="onPasswordInputChange"/>
       <InputComponent class="mt-1" label="Confirm password" input-type="password" @input-change="onConfirmationPasswordInputChange"/>
@@ -57,15 +58,20 @@
 </script>
 
 <style scoped>
+  h1 {
+    align-self: center;
+    font-size: xxx-large;
+  }
+
   .signup-view-wrapper {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
   }
 
   .signup-view {
     width: 450px;
+    align-self: center;
   }
 </style>
