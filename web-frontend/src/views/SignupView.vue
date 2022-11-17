@@ -17,6 +17,7 @@
             v-model="password"
             :rules="passwordRules"
             label="Password"
+            type="password"
             required>
         </v-text-field>
         <v-text-field
@@ -24,6 +25,7 @@
             v-model="confirmationPassword"
             :rules="confirmationPasswordRules"
             label="Confirm password"
+            type="password"
             required>
         </v-text-field>
       </v-form>

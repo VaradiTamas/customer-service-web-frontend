@@ -5,7 +5,7 @@
       <h1 class="dialog-title">You have successfully signed up!</h1>
       <!--dialog main content-->
       <!--dialog buttons-->
-      <ButtonComponent class="dialog-submit-button" text="OK" @button-click="$emit('closeDialog')"/>
+      <ButtonComponent class="dialog-submit-button" text="OK" @button-click="onOKButtonClick"/>
     </div>
   </v-dialog>
 </template>
@@ -17,6 +17,13 @@ export default {
   components: {
     ButtonComponent
   },
+
+  methods: {
+    onOKButtonClick() {
+      this.$emit('closeDialog');
+      this.$router.push('/owner');
+    }
+  }
 }
 </script>
 
