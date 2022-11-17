@@ -3,7 +3,7 @@
     <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
 
     <div class="header-wrapper">
-      <h1 class="pt-7">Telekom customer service</h1>
+      <h1 class="pt-5">Telekom customer service</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="this.dialog = true;"/>
       <div class="menu-wrapper mt-8">
         <router-link :to="'/admin/employees'" class="menu-item">Employees</router-link>
@@ -73,7 +73,7 @@
   .header-wrapper {
     display: flex;
     flex-direction: column;
-    height: 25vh;
+    height: 30vh;
     width: 100%;
   }
 
@@ -100,7 +100,7 @@
 
   .main-content-wrapper {
     width: 100%;
-    height: 75vh;
+    height: 70vh;
     display: flex;
     flex-direction: row;
     justify-content: center;

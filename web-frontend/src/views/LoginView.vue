@@ -1,9 +1,26 @@
 <template>
   <div class="login-view-wrapper">
+    <!--view title-->
     <h1 class="mt-16">Login to customer managing system</h1>
+    <!--view main content-->
     <div class="login-view mt-16">
-      <InputComponent class="mt-1" label="Email" input-type="email" @input-change="onEmailInputChange"/>
-      <InputComponent class="mt-1" label="Password" input-type="password" @input-change="onPasswordInputChange"/>
+      <!--view form-->
+      <v-form class="" ref="form" v-model="valid">
+        <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="Email"
+            required>
+        </v-text-field>
+        <v-text-field
+            class="mt-3"
+            v-model="password"
+            :rules="passwordRules"
+            label="Password"
+            required>
+        </v-text-field>
+      </v-form>
+      <!--view buttons-->
       <ButtonComponent class="mt-button" text="Log in" @button-click="onLoginButtonClick"/>
       <div class="mt-2">
         <router-link class="sign-up-link" to="/signup"><u>Sign up</u></router-link>
@@ -14,35 +31,35 @@
 
 <script>
   import ButtonComponent from '@/components/ButtonComponent.vue';
-  import InputComponent from "@/components/InputComponent";
-
   export default {
     name: 'LoginView',
     components: {
-      InputComponent,
       ButtonComponent
     },
 
     data: function () {
       return {
+        valid: false,
         email: '',
+        emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+/.test(v) || 'E-mail must be valid',
+        ],
         password: '',
+        passwordRules: [
+          v => !!v || 'Password is required',
+          v => v.length > 6 || 'Password must be at least 6 characters long',
+        ],
       }
     },
 
     methods: {
-      onEmailInputChange(emailInput) {
-        this.email = emailInput;
-      },
-
-      onPasswordInputChange(passwordInput) {
-        this.password = passwordInput
-      },
-
       onLoginButtonClick() {
-        console.log(this.email);
-        console.log(this.password);
-        this.$router.push('/admin');
+        this.$refs.form.validate();
+        
+        if (this.valid) {
+          this.$router.push('/admin');
+        }
       }
     },
   }
