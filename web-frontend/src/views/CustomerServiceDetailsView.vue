@@ -10,9 +10,9 @@
       <h1 class="pt-7">Telekom customer service</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="this.dialog = true;"/>
       <div class="menu-wrapper mt-8">
-        <router-link :to="`/owner/customer-service/${customerService.id}/employees`" class="menu-item"><u>Employees</u></router-link>
-        <router-link :to="`/owner/customer-service/${customerService.id}/service-types`" class="menu-item ml-10"><u>Service types</u></router-link>
-        <router-link :to="`/owner/customer-service/${customerService.id}/administrators`" class="menu-item ml-10"><u>Administrators</u></router-link>
+        <router-link :to="`/owner/customer-service/${customerService.id}/employees`" class="menu-item">Employees</router-link>
+        <router-link :to="`/owner/customer-service/${customerService.id}/service-types`" class="menu-item ml-10">Service types</router-link>
+        <router-link :to="`/owner/customer-service/${customerService.id}/administrators`" class="menu-item ml-10">Administrators</router-link>
       </div>
     </div>
 
@@ -78,13 +78,6 @@ export default {
     flex-direction: column;
   }
 
-  .header-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 25vh;
-    width: 100%;
-  }
-
   h1 {
     text-align: center;
   }
@@ -94,22 +87,5 @@ export default {
     height: 50px;
     align-self: center;
     cursor: pointer;
-  }
-
-  .menu-wrapper {
-    align-self: center;
-  }
-
-  .menu-item {
-    font-size: 25px;
-    color: black;
-  }
-
-  .main-content-wrapper {
-    width: 100%;
-    height: 75vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
   }
 </style>

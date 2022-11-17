@@ -70,13 +70,6 @@
     flex-direction: column;
   }
 
-  .header-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 30vh;
-    width: 100%;
-  }
-
   h1 {
     text-align: center;
   }
@@ -86,23 +79,5 @@
     height: 50px;
     align-self: center;
     cursor: pointer;
-  }
-
-  .menu-wrapper {
-    align-self: center;
-  }
-
-  .menu-item {
-    font-size: 25px;
-    color: black;
-    text-decoration: none;
-  }
-
-  .main-content-wrapper {
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
   }
 </style>
