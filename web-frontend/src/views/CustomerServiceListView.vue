@@ -1,9 +1,12 @@
 <template>
+  <!--logout link-->
   <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
-
+  <!--main content-->
   <div class="owner-view-wrapper">
+    <!--list title-->
     <h1>Customer services</h1>
     <div class="list-wrapper list-height">
+      <!--list content-->
       <div class="customer-service-list-items-wrapper">
         <div class="customer-service-list-item mt-3" v-for="(customerService, index) in customerServices" :key="customerService.id">
           <div class="customer-service-list-name" @click="onCustomerServiceClick(index)">{{ customerService.name }}</div>
@@ -12,7 +15,7 @@
           </div>
         </div>
       </div>
-
+      <!--list add button-->
       <div class="list-add-button-wrapper">
         <ButtonComponent class="mt-6" text="Add new customer service" @button-click="this.dialog = true;"></ButtonComponent>
       </div>

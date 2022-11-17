@@ -1,10 +1,10 @@
 <template>
   <div class="signup-view-wrapper">
-    <!--view title-->
+    <!--title-->
     <h1 class="mt-16">Signup as a company owner</h1>
-    <!--view main content-->
+    <!--main content-->
     <div class="signup-view mt-16">
-      <!--view form-->
+      <!--form-->
       <v-form class="" ref="form" v-model="valid">
         <v-text-field
             v-model="email"
@@ -29,6 +29,7 @@
             required>
         </v-text-field>
       </v-form>
+      <!--button-->
       <ButtonComponent class="mt-button" text="Sign up" @button-click="onSignupButtonClick"/>
     </div>
   </div>

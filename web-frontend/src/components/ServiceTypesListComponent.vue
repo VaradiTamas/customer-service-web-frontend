@@ -1,10 +1,11 @@
 <template>
   <div class="list-wrapper">
+    <!--list titles-->
     <div class="list-title-wrapper">
       <div class="list-title">Email</div>
       <div class="list-title">Password</div>
     </div>
-
+    <!--list content-->
     <div class="list-items-wrapper">
       <div class="list-item-wrapper" v-for="(serviceType, index) in serviceTypes" :key="serviceType.id">
         <div class="list-item">{{ serviceType.name }}</div>
@@ -14,7 +15,7 @@
         </div>
       </div>
     </div>
-
+    <!--list add buttons-->
     <div class="list-add-button-wrapper">
       <ButtonComponent class="mt-button" text="Add new service type" @button-click="this.dialog = true;"></ButtonComponent>
     </div>

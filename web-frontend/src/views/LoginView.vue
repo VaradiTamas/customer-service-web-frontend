@@ -1,10 +1,10 @@
 <template>
   <div class="login-view-wrapper">
-    <!--view title-->
+    <!--title-->
     <h1 class="mt-16">Login to customer managing system</h1>
-    <!--view main content-->
+    <!--main content-->
     <div class="login-view mt-16">
-      <!--view form-->
+      <!--form-->
       <v-form class="" ref="form" v-model="valid">
         <v-text-field
             v-model="email"
@@ -20,7 +20,7 @@
             required>
         </v-text-field>
       </v-form>
-      <!--view buttons-->
+      <!--buttons-->
       <ButtonComponent class="mt-button" text="Log in" @button-click="onLoginButtonClick"/>
       <div class="mt-2">
         <router-link class="sign-up-link" to="/signup"><u>Sign up</u></router-link>

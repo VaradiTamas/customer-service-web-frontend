@@ -1,7 +1,8 @@
 <template>
   <div class="admin-view-wrapper">
+    <!--logout link-->
     <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
-
+    <!--header-->
     <div class="header-wrapper">
       <h1 class="pt-5">Telekom customer service</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="this.dialog = true;"/>
@@ -10,7 +11,7 @@
         <router-link :to="'/admin/service-types'" class="menu-item ml-10">Service types</router-link>
       </div>
     </div>
-
+    <!--main content-->
     <div class="main-content-wrapper">
       <router-view></router-view>
     </div>

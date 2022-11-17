@@ -1,10 +1,11 @@
 <template>
+  <!--home link-->
   <router-link :to="'/owner'">
     <img class="home-icon" src="/icons/home.svg"/>
   </router-link>
-
+  <!--logout link-->
   <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
-
+  <!--header-->
   <div class="customer-service-view-wrapper">
     <div class="header-wrapper">
       <h1 class="pt-7">Telekom customer service</h1>
@@ -15,7 +16,7 @@
         <router-link :to="`/owner/customer-service/${customerService.id}/administrators`" class="menu-item ml-10">Administrators</router-link>
       </div>
     </div>
-
+    <!--main content-->
     <div class="main-content-wrapper">
       <router-view></router-view>
     </div>

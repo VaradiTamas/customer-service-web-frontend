@@ -1,10 +1,11 @@
 <template>
   <div class="list-wrapper">
+    <!--list titles-->
     <div class="list-title-wrapper">
       <div class="list-title">Email</div>
       <div class="list-title">Password</div>
     </div>
-
+    <!--list content-->
     <div class="list-items-wrapper">
       <div class="list-item-wrapper" v-for="(employee, index) in employees" :key="employee.id">
         <div class="list-item">{{ employee.email }}</div>
@@ -14,7 +15,7 @@
         </div>
       </div>
     </div>
-
+    <!--list add button-->
     <div class="list-add-button-wrapper">
       <ButtonComponent class="mt-button" text="Add new employee" @button-click="this.dialog = true;"></ButtonComponent>
     </div>
@@ -52,6 +53,7 @@ export default {
       this.employees.push(new Employee('sadkskaédkasédlséldk', email, 'valami3'));
     }
   },
+
   beforeMount(){
     this.getEmployeesData();
   }

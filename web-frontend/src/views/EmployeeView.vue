@@ -1,20 +1,23 @@
 <template>
+  <!--logout link-->
   <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
-
+  <!--QR code-->
   <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="this.dialog = true;"/>
-
+  <!--main content-->
   <div class="employee-view-wrapper">
     <div class="main-content-wrapper">
+      <!--ticket number-->
       <div class="half-main-content-wrapper">
         <h1>Ticket number</h1>
         <div class="ticket-number"><p>{{ ticket.number }}</p></div>
       </div>
+      <!--service type-->
       <div class="half-main-content-wrapper">
         <h1>Service type</h1>
         <div class="service-type"><p>{{ ticket.serviceType.name }}</p></div>
       </div>
     </div>
-
+    <!--next customer button-->
     <ButtonComponent class="next-customer-button" text="Next customer" @button-click="onNextCustomerButtonClick"></ButtonComponent>
   </div>
 
