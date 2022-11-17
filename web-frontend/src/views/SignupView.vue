@@ -1,10 +1,32 @@
 <template>
   <div class="signup-view-wrapper">
+    <!--view title-->
     <h1 class="mt-16">Signup as a company owner</h1>
+    <!--view main content-->
     <div class="signup-view mt-16">
-      <InputComponent class="mt-1" label="Email" input-type="email" @input-change="onEmailInputChange"/>
-      <InputComponent class="mt-1" label="Password" input-type="password" @input-change="onPasswordInputChange"/>
-      <InputComponent class="mt-1" label="Confirm password" input-type="password" @input-change="onConfirmationPasswordInputChange"/>
+      <!--view form-->
+      <v-form class="" ref="form" v-model="valid">
+        <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="Email"
+            required>
+        </v-text-field>
+        <v-text-field
+            class="mt-3"
+            v-model="password"
+            :rules="passwordRules"
+            label="Password"
+            required>
+        </v-text-field>
+        <v-text-field
+            class="mt-3"
+            v-model="confirmationPassword"
+            :rules="confirmationPasswordRules"
+            label="Confirm password"
+            required>
+        </v-text-field>
+      </v-form>
       <ButtonComponent class="mt-button" text="Sign up" @button-click="onSignupButtonClick"/>
     </div>
   </div>
@@ -13,45 +35,44 @@
 </template>
 
 <script>
-  import InputComponent from "@/components/InputComponent";
   import ButtonComponent from "@/components/ButtonComponent";
   import SignupSuccessDialog from "@/dialogs/SignupSuccessDialog";
-
   export default {
     name: "SignupView",
     components: {
       SignupSuccessDialog,
       ButtonComponent,
-      InputComponent,
     },
 
     data: function () {
       return {
+        valid: false,
         email: '',
+        emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+/.test(v) || 'E-mail must be valid',
+        ],
         password: '',
+        passwordRules: [
+          v => !!v || 'Password is required',
+          v => v.length > 5 || 'Password must be at least 6 characters long',
+        ],
         confirmationPassword: '',
+        confirmationPasswordRules: [
+          v => !!v || 'Confirmation password is required',
+          v => v === this.password || 'Confirmation password must match your password',
+        ],
         dialog: false,
       }
     },
 
     methods: {
-      onEmailInputChange(emailInput) {
-        this.email = emailInput;
-      },
-
-      onPasswordInputChange(passwordInput) {
-        this.password = passwordInput
-      },
-
-      onConfirmationPasswordInputChange(confirmationPasswordInput) {
-        this.confirmationPassword = confirmationPasswordInput;
-      },
-
       onSignupButtonClick() {
-        console.log(this.email);
-        console.log(this.password);
-        console.log(this.confirmationPassword);
-        this.dialog = true;
+        this.$refs.form.validate();
+
+        if (this.valid) {
+          this.dialog = true;
+        }
       },
     },
   }
