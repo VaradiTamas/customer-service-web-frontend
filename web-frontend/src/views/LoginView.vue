@@ -56,6 +56,8 @@
         this.$refs.form.validate();
         
         if (this.valid) {
+          // axios login endpoint email jelszo parossal visszajön egy JWT, admin employee vagy owner id-ja és eszerint
+          // elirányítjuk a megfelelő routera
           this.$router.push('/admin');
         }
       }
