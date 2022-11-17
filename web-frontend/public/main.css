@@ -25,17 +25,28 @@
     border-radius: 1rem;
 }
 
+.dialog-title {
+    align-self: center;
+}
+
+.dialog-form {
+    width: 450px;
+    margin-top: calc(var(--spacer) * 3)!important;
+    align-self: center;
+}
+
+.dialog-submit-button {
+    margin-top: calc(var(--spacer) * 3)!important;
+    align-self: center;
+}
+
+.dialog-cancel-button {
+    margin-top: calc(var(--spacer) * 1.5)!important;
+    align-self: center;
+}
+
 .v-overlay__scrim {
     opacity: 75%!important;
-}
-
-.dialog-element {
-    align-self: center;
-}
-
-.form {
-    width: 450px;
-    align-self: center;
 }
 
 .list-wrapper {

@@ -2,9 +2,9 @@
   <v-dialog class="dialog-wrapper">
     <div class="dialog-content">
       <!--dialog title-->
-      <h1 class="dialog-element">Add a new service type</h1>
-      <!--form inputs-->
-      <v-form class="form mt-10" ref="form" v-model="valid">
+      <h1 class="dialog-title">Add a new service type</h1>
+      <!--dialog main content-->
+      <v-form class="dialog-form" ref="form" v-model="valid">
         <v-text-field
             v-model="name"
             :rules="nameRules"
@@ -12,6 +12,7 @@
             required>
         </v-text-field>
         <v-text-field
+            class="mt-3"
             v-model="avgCompletionTime"
             :rules="avgCompletionTimeRules"
             label="Estimated completion time in seconds"
@@ -19,9 +20,9 @@
             required>
         </v-text-field>
       </v-form>
-      <!--buttons-->
-      <ButtonComponent class="mt-button dialog-element" text="Add service type" @button-click="onAddServiceTypeClick()"/>
-      <ButtonComponent class="mt-5 dialog-element" text="Cancel" @button-click="$emit('closeDialog')"/>
+      <!--dialog buttons-->
+      <ButtonComponent class="dialog-submit-button" text="Add service type" @button-click="onAddServiceTypeClick"/>
+      <ButtonComponent class="dialog-cancel-button" text="Cancel" @button-click="$emit('closeDialog')"/>
     </div>
   </v-dialog>
 </template>
@@ -47,6 +48,7 @@ export default {
       ]
     }
   },
+
   methods: {
     onAddServiceTypeClick(){
       this.$refs.form.validate();
@@ -62,7 +64,5 @@ export default {
 </script>
 
 <style scoped>
-  h1 {
-    text-align: center;
-  }
+
 </style>

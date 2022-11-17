@@ -1,29 +1,48 @@
 <template>
   <v-dialog class="dialog-wrapper">
     <div class="dialog-content">
-      <h1 class="dialog-element">Add a new customer service</h1>
-      <InputComponent class="mt-5 dialog-element" label="Customer service name" input-type="text" @input-change="onCustomerServiceNameChange"/>
-      <ButtonComponent class="mt-button dialog-element" text="Add customer service" @button-click="$emit('addCustomerService', this.name); $emit('closeDialog')"/>
-      <ButtonComponent class="mt-5 dialog-element" text="Cancel" @button-click="$emit('closeDialog')"/>
+      <!--dialog title-->
+      <h1 class="dialog-title">Add a new customer service</h1>
+      <!--dialog main content-->
+      <v-form class="dialog-form" ref="form" v-model="valid">
+        <v-text-field
+            v-model="name"
+            :rules="nameRules"
+            label="Customer service name"
+            required>
+        </v-text-field>
+      </v-form>
+      <!--dialog buttons-->
+      <ButtonComponent class="dialog-submit-button" text="Add customer service" @button-click="onAddCustomerServiceButtonClick"/>
+      <ButtonComponent class="dialog-cancel-button" text="Cancel" @button-click="$emit('closeDialog')"/>
     </div>
   </v-dialog>
 </template>
 
 <script>
-import InputComponent from "@/components/InputComponent";
 import ButtonComponent from "@/components/ButtonComponent";
 export default {
   name: "AddCustomerServiceDialog",
-  components: {ButtonComponent, InputComponent},
+  components: { ButtonComponent },
+
   data: function () {
     return {
       name: '',
+      nameRules: [
+        v => !!v || 'Customer service name is required',
+      ],
     }
   },
 
   methods: {
-    onCustomerServiceNameChange(name) {
-      this.name = name;
+    onAddCustomerServiceButtonClick() {
+      this.$refs.form.validate();
+
+      if (this.valid) {
+        this.$emit('addCustomerService', this.name);
+        this.$emit('closeDialog');
+        this.$refs.form.reset();
+      }
     }
   }
 }

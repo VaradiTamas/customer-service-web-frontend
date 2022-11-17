@@ -42,9 +42,9 @@
 
     methods: {
       getCustomerServiceData() {
-        this.axios.get("https://api.openweathermap.org/data/2.5/weather?lat=47.1234&lon=57.3445&appid=107eca7031d101001ab347376dbe2747").then((response) => {
-          console.log(response.data)
-        });
+        // this.axios.get("https://api.openweathermap.org/data/2.5/weather?lat=47.1234&lon=57.3445&appid=107eca7031d101001ab347376dbe2747").then((response) => {
+        //   console.log(response.data)
+        // });
 
         const serviceTypes = [];
         serviceTypes.push(new ServiceType('sdasdkalsdjlkasdlkas', 'name1', 11111));

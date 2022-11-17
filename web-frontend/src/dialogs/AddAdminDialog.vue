@@ -1,29 +1,50 @@
 <template>
   <v-dialog class="dialog-wrapper">
     <div class="dialog-content">
-      <h1 class="dialog-element">Add a new admin</h1>
-      <InputComponent class="mt-5 dialog-element" label="Admin's email" input-type="text" @input-change="onAdminEmailChange"/>
-      <ButtonComponent class="mt-button dialog-element" text="Add admin" @button-click="$emit('addAdmin', this.adminEmail); $emit('closeDialog')"/>
-      <ButtonComponent class="mt-5 dialog-element" text="Cancel" @button-click="$emit('closeDialog')"/>
+      <!--dialog title-->
+      <h1 class="dialog-title">Add a new admin</h1>
+      <!--dialog main content-->
+      <v-form class="dialog-form" ref="form" v-model="valid">
+        <v-text-field
+            v-model="adminEmail"
+            :rules="adminEmailRules"
+            label="Admin's email"
+            required>
+        </v-text-field>
+      </v-form>
+      <!--dialog buttons-->
+      <ButtonComponent class="dialog-submit-button" text="Add admin" @button-click="onAddAdminButtonClick"/>
+      <ButtonComponent class="dialog-cancel-button" text="Cancel" @button-click="$emit('closeDialog')"/>
     </div>
   </v-dialog>
 </template>
 
 <script>
 import ButtonComponent from "@/components/ButtonComponent";
-import InputComponent from "@/components/InputComponent";
 export default {
   name: "AddAdminDialog",
-  components: {InputComponent, ButtonComponent},
+  components: { ButtonComponent },
+
   data: function () {
     return {
+      valid: false,
       adminEmail: '',
+      adminEmailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      ],
     }
   },
 
   methods: {
-    onAdminEmailChange(adminEmailInput) {
-      this.adminEmail = adminEmailInput;
+    onAddAdminButtonClick() {
+      this.$refs.form.validate();
+
+      if (this.valid) {
+        this.$emit('addAdmin', this.adminEmail);
+        this.$emit('closeDialog');
+        this.$refs.form.reset();
+      }
     }
   }
 }

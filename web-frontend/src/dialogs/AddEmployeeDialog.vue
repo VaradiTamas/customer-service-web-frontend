@@ -2,19 +2,19 @@
   <v-dialog class="dialog-wrapper">
     <div class="dialog-content">
       <!--dialog title-->
-      <h1 class="dialog-element">Add a new employee</h1>
-      <!--form inputs-->
-      <v-form class="form mt-10" ref="form" v-model="valid">
+      <h1 class="dialog-title">Add a new employee</h1>
+      <!--dialog main content-->
+      <v-form class="dialog-form" ref="form" v-model="valid">
         <v-text-field
             v-model="employeeEmail"
-            :rules="emailRules"
+            :rules="employeeEmailRules"
             label="Employee's email"
             required>
         </v-text-field>
       </v-form>
-      <!--buttons-->
-      <ButtonComponent class="mt-button dialog-element" text="Add employee" @button-click="onAddEmployeeButtonClick()"/>
-      <ButtonComponent class="mt-5 dialog-element" text="Cancel" @button-click="$emit('closeDialog')"/>
+      <!--dialog buttons-->
+      <ButtonComponent class="dialog-submit-button" text="Add employee" @button-click="onAddEmployeeButtonClick"/>
+      <ButtonComponent class="dialog-cancel-button" text="Cancel" @button-click="$emit('closeDialog')"/>
     </div>
   </v-dialog>
 </template>
@@ -32,7 +32,7 @@ export default {
     return {
       valid: false,
       employeeEmail: '',
-      emailRules: [
+      employeeEmailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
