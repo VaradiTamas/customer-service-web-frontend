@@ -37,7 +37,7 @@
     async beforeMount() {
       await this.axios
           //.get("http://localhost:8080/customer-queue-app/api/customerServices/" + this.customerServiceId)
-          .get("http://localhost:8080/customer-queue-app/api/customerServices/00000000-80ed-4d57-a626-c2d5464a522a")
+          .get(process.env.VUE_APP_BASE_API_URL + "/customerServices/00000000-80ed-4d57-a626-c2d5464a522a")
           .then((response) => {
             this.customerService = response.data;
             console.log(response.data)

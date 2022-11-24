@@ -67,13 +67,19 @@ export default {
       };
 
       this.axios
-          .post("http://localhost:8080/customer-queue-app/api/serviceTypes", createServiceTypeRequest)
+          .post(process.env.VUE_APP_BASE_API_URL + "/serviceTypes", createServiceTypeRequest)
           .then((response) => {
             this.dataCustomerService.serviceTypes.push(response.data)
           });
     },
     onDeleteServiceType(index) {
-      this.serviceTypes.splice(index, 1);
+      const serviceTypeId = this.dataCustomerService.serviceTypes.at(index).id
+      this.axios
+          .delete(process.env.VUE_APP_BASE_API_URL + "/serviceTypes/" + serviceTypeId)
+          .then((response) => {
+            console.log(response.data);
+            this.dataCustomerService.serviceTypes.splice(index, 1);
+          });
     },
   },
 }
