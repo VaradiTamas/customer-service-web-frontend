@@ -2,14 +2,17 @@
   <div class="list-wrapper">
     <!--list titles-->
     <div class="list-title-wrapper">
-      <div class="list-title">Email</div>
-      <div class="list-title">Password</div>
+      <div class="list-title">Name</div>
+      <div class="list-title">Handle time</div>
     </div>
     <!--list content-->
     <div class="list-items-wrapper">
-      <div class="list-item-wrapper" v-for="(serviceType, index) in serviceTypes" :key="serviceType.id">
+      <div class="list-item-wrapper" v-for="(serviceType, index) in dataCustomerService.serviceTypes" :key="serviceType.id">
         <div class="list-item">{{ serviceType.name }}</div>
-        <div class="list-item">{{ serviceType.averageCompletionTime }}</div>
+        <div class="list-item">
+          <span class="mr-2">{{ serviceType.handleTime }}</span>
+          <span>minutes</span>
+        </div>
         <div class="list-trash-icon-wrapper">
           <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteServiceType(index)"/>
         </div>
@@ -27,37 +30,52 @@
 <script>
 import ButtonComponent from "@/components/ButtonComponent";
 import AddServiceTypeDialog from "@/dialogs/AddServiceTypeDialog";
-import {ServiceType} from "@/models/service-type-model";
 
 export default {
-  name: "AdminServiceTypesComponent",
+  name: "ServiceTypesListComponent",
   components: { AddServiceTypeDialog, ButtonComponent },
+
+  props: {
+    propCustomerService: {
+      type: Object
+    }
+  },
 
   data: function() {
     return {
-      serviceTypes: [],
       dialog: false,
+      dataCustomerService: [],
     };
   },
 
-  methods: {
-    getServiceTypesData() {
-      this.serviceTypes.push(new ServiceType('sdasdkalsdjlkasdlkas', 'name1', 11111));
-      this.serviceTypes.push(new ServiceType('dasdallalasásédlasád', 'name2', 222222));
-      this.serviceTypes.push(new ServiceType('sadkskaédkasédlséldk', 'name3', 3333));
-    },
-    onDeleteServiceType(index) {
-      this.serviceTypes.splice(index, 1);
-    },
-    onAddServiceType(name, avgCompletionTime) {
-      this.serviceTypes.push(new ServiceType('sadkskaédkasédlséldk', name, avgCompletionTime));
+  watch: {
+    propCustomerService: function(newVal) {
+      this.dataCustomerService = newVal;
     }
   },
 
   beforeMount() {
-    this.getServiceTypesData();
-    console.log(this.serviceTypes)
-  }
+    this.dataCustomerService = this.propCustomerService;
+  },
+
+  methods: {
+    onAddServiceType(name, avgCompletionTime) {
+      const createServiceTypeRequest = {
+        name: name,
+        handleTime: avgCompletionTime,
+        customerServiceId: this.dataCustomerService.id,
+      };
+
+      this.axios
+          .post("http://localhost:8080/customer-queue-app/api/serviceTypes", createServiceTypeRequest)
+          .then((response) => {
+            this.dataCustomerService.serviceTypes.push(response.data)
+          });
+    },
+    onDeleteServiceType(index) {
+      this.serviceTypes.splice(index, 1);
+    },
+  },
 }
 </script>
 

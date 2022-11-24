@@ -13,18 +13,15 @@
     </div>
     <!--main content-->
     <div class="main-content-wrapper">
-      <router-view></router-view>
+      <router-view :prop-customer-service="this.customerService"></router-view>
     </div>
   </div>
 
-  <QRCodeDialog v-model="dialog" @close-dialog="dialog = false"/>
+  <QRCodeDialog v-model="dialog" @close-dialog="dialog = false"/>g
 </template>
 
 <script>
   import QRCodeDialog from "@/dialogs/QRCodeDialog";
-  import { ServiceType } from "@/models/service-type-model";
-  import { Employee } from "@/models/employee-model";
-  import { CustomerService } from "@/models/customer-service-model";
   export default {
     name: "AdminView",
     components: { QRCodeDialog },
@@ -32,34 +29,20 @@
     data: function() {
       return {
         dialog: false,
-        customerService: '',
+        customerServiceId: String,
+        customerService: String,
       };
     },
 
-    beforeMount() {
-      this.getCustomerServiceData();
-      console.log(this.serviceTypes)
+    async beforeMount() {
+      await this.axios
+          //.get("http://localhost:8080/customer-queue-app/api/customerServices/" + this.customerServiceId)
+          .get("http://localhost:8080/customer-queue-app/api/customerServices/00000000-80ed-4d57-a626-c2d5464a522a")
+          .then((response) => {
+            this.customerService = response.data;
+            console.log(response.data)
+          });
     },
-
-    methods: {
-      getCustomerServiceData() {
-        // this.axios.get("https://api.openweathermap.org/data/2.5/weather?lat=47.1234&lon=57.3445&appid=107eca7031d101001ab347376dbe2747").then((response) => {
-        //   console.log(response.data)
-        // });
-
-        const serviceTypes = [];
-        serviceTypes.push(new ServiceType('sdasdkalsdjlkasdlkas', 'name1', 11111));
-        serviceTypes.push(new ServiceType('dasdallalasásédlasád', 'name2', 222222));
-        serviceTypes.push(new ServiceType('sadkskaédkasédlséldk', 'name3', 3333));
-
-        const employees = [];
-        employees.push(new Employee('sdasdkalsdjlkasdlkas', 'peldaemail1@esdas.com', 'valami1'));
-        employees.push(new Employee('dasdallalasásédlasád', 'peldaemail2@assada.com', 'valami2'));
-        employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-
-        this.customerService = new CustomerService('randomid', 'Telekom customer service', serviceTypes, employees, null);
-      }
-    }
   }
 </script>
 
