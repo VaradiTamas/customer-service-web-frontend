@@ -72,8 +72,10 @@ export default {
             this.dataCustomerService.serviceTypes.push(response.data)
           });
     },
+
     onDeleteServiceType(index) {
       const serviceTypeId = this.dataCustomerService.serviceTypes.at(index).id
+
       this.axios
           .delete(process.env.VUE_APP_BASE_API_URL + "/serviceTypes/" + serviceTypeId)
           .then((response) => {

@@ -9,12 +9,12 @@
       <!--ticket number-->
       <div class="half-main-content-wrapper">
         <h1>Ticket number</h1>
-        <div class="ticket-number"><p>{{ ticket.number }}</p></div>
+        <div class="ticket-number"><p>{{ customerTicket.ticketNumber }}</p></div>
       </div>
       <!--service type-->
       <div class="half-main-content-wrapper">
         <h1>Service type</h1>
-        <div class="service-type"><p>{{ ticket.serviceType.name }}</p></div>
+        <div class="service-type"><p>{{ customerTicket.serviceTypeName }}</p></div>
       </div>
     </div>
     <!--next customer button-->
@@ -26,10 +26,6 @@
 
 <script>
 import QRCodeDialog from "@/dialogs/QRCodeDialog";
-import { ServiceType } from "@/models/service-type-model";
-import { Employee } from "@/models/employee-model";
-import { CustomerService } from "@/models/customer-service-model";
-import { Ticket } from "@/models/ticket-model";
 import ButtonComponent from "@/components/ButtonComponent";
 export default {
   name: "EmployeeView",
@@ -38,33 +34,34 @@ export default {
   data: function() {
     return {
       dialog: false,
-      customerService: '',
-      ticket: '',
+      employeeId: String,
+      customerService: {
+        type: Object
+      },
+      customerTicket: {
+        type: Object
+      },
     };
   },
 
   beforeMount() {
-    this.getCustomerServiceData();
+    this.employeeId = this.$route.params.employeeId;
+
+    this.axios
+        .get(process.env.VUE_APP_BASE_API_URL + `/employees/${this.employeeId}`)
+        .then((response) => {
+          this.customerService = response.data.customerService;
+          console.log(response.data);
+        });
   },
 
   methods: {
-    getCustomerServiceData() {
-      const serviceTypes = [];
-      serviceTypes.push(new ServiceType('sdasdkalsdjlkasdlkas', 'name1', 11111));
-      serviceTypes.push(new ServiceType('dasdallalasásédlasád', 'name2', 222222));
-      serviceTypes.push(new ServiceType('sadkskaédkasédlséldk', 'name3', 3333));
-
-      const employees = [];
-      employees.push(new Employee('sdasdkalsdjlkasdlkas', 'peldaemail1@esdas.com', 'valami1'));
-      employees.push(new Employee('dasdallalasásédlasád', 'peldaemail2@assada.com', 'valami2'));
-      employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-
-      this.customerService = new CustomerService('randomid', 'Telekom customer service', serviceTypes, employees, null);
-      this.ticket = new Ticket('sadasdd', 23, serviceTypes[1]);
-    },
     onNextCustomerButtonClick() {
-      this.ticket.number++;
-      this.ticket.serviceType.name = 'valamimas service type'
+      this.axios
+          .get(process.env.VUE_APP_BASE_API_URL + `/customerServices/${this.customerService.id}/nextTicket?employeeId=${this.employeeId}`)
+          .then((response) => {
+            this.customerTicket = response.data;
+          });
     }
   },
 }
@@ -102,7 +99,8 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #D9D9D9;
+    background-color: lightblue;
+    border-radius: 5rem;
   }
 
   h1 {

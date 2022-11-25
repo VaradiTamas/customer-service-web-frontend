@@ -29,7 +29,7 @@ const routes = [
             { path: 'administrators', name: 'OwnerAdministratorsList', component: AdminsListComponent },
         ]
     },
-    { path: '/employee', name: 'EmployeeView', component: EmployeeView },
+    { path: '/employee/:employeeId', name: 'EmployeeView', component: EmployeeView },
 ]
 
 const router = createRouter({
