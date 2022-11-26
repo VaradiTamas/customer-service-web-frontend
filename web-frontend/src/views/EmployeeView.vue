@@ -1,19 +1,27 @@
 <template>
-  <!--logout link-->
-  <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
-  <!--QR code-->
-  <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="this.dialog = true;"/>
-  <!--main content-->
   <div class="employee-view-wrapper">
+    <!--header-->
+    <div class="header-wrapper">
+      <!--QR code-->
+      <img class="qr-code-icon" src="/icons/qr-code.svg" @click="dialog = true;"/>
+      <!--customer service name and helpdesk number-->
+      <div class="header-title-wrapper">
+        <h1>{{ employee.customerService.name }}</h1>
+        <h2 class="mt-3">Helpdesk number: {{ employee.helpDeskNumber }}</h2>
+      </div>
+      <!--logout link-->
+      <router-link class="header-logout-link" :to="'/login'">Log out</router-link>
+    </div>
+    <!--main content-->
     <div class="main-content-wrapper">
       <!--ticket number-->
       <div class="half-main-content-wrapper">
-        <h1>Ticket number</h1>
+        <h1 class="half-main-content-title">Ticket number</h1>
         <div class="ticket-number"><p>{{ customerTicket.ticketNumber }}</p></div>
       </div>
       <!--service type-->
       <div class="half-main-content-wrapper">
-        <h1>Service type</h1>
+        <h1 class="half-main-content-title">Service type</h1>
         <div class="service-type"><p>{{ customerTicket.serviceTypeName }}</p></div>
       </div>
     </div>
@@ -21,12 +29,13 @@
     <ButtonComponent class="next-customer-button" text="Next customer" @button-click="onNextCustomerButtonClick"></ButtonComponent>
   </div>
 
-  <QRCodeDialog v-model="dialog" @close-dialog="dialog = false"/>
+  <QRCodeDialog :customer-service="employee.customerService" v-model="dialog" @close-dialog="dialog = false"/>
 </template>
 
 <script>
 import QRCodeDialog from "@/dialogs/QRCodeDialog";
 import ButtonComponent from "@/components/ButtonComponent";
+
 export default {
   name: "EmployeeView",
   components: { ButtonComponent, QRCodeDialog },
@@ -35,7 +44,7 @@ export default {
     return {
       dialog: false,
       employeeId: String,
-      customerService: {
+      employee: {
         type: Object
       },
       customerTicket: {
@@ -45,20 +54,19 @@ export default {
   },
 
   beforeMount() {
-    this.employeeId = this.$route.params.employeeId;
+    const employeeId = this.$route.params.employeeId;
 
     this.axios
-        .get(process.env.VUE_APP_BASE_API_URL + `/employees/${this.employeeId}`)
+        .get(process.env.VUE_APP_BASE_API_URL + `/employees/${employeeId}`)
         .then((response) => {
-          this.customerService = response.data.customerService;
-          console.log(response.data);
+          this.employee = response.data;
         });
   },
 
   methods: {
     onNextCustomerButtonClick() {
       this.axios
-          .get(process.env.VUE_APP_BASE_API_URL + `/customerServices/${this.customerService.id}/nextTicket?employeeId=${this.employeeId}`)
+          .get(process.env.VUE_APP_BASE_API_URL + `/customerServices/${this.employee.customerService.id}/nextTicket?employeeId=${this.employee.id}`)
           .then((response) => {
             this.customerTicket = response.data;
           });
@@ -68,21 +76,39 @@ export default {
 </script>
 
 <style scoped>
-  .qr-code-icon {
-    width: 40px;
-    height: 40px;
-    position: fixed;
-    top: 1rem;
-    left: 2rem;
-    cursor: pointer;
-  }
-
   .employee-view-wrapper {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+  }
+
+  .header-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 3rem;
+  }
+
+  .qr-code-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .header-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-logout-link {
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: 500;
+    color: cornflowerblue;
+    text-decoration: none;
   }
 
   .main-content-wrapper {
@@ -103,7 +129,7 @@ export default {
     border-radius: 5rem;
   }
 
-  h1 {
+  .half-main-content-title {
     height: 20%;
     font-size: xxx-large;
     align-self: center;
