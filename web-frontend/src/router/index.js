@@ -20,7 +20,7 @@ const routes = [
             { path: 'service-types', name: 'AdminServiceTypes', component: ServiceTypesListComponent },
         ]
     },
-    { path: '/owner', name: 'OwnerCustomerServiceList', component: CustomerServiceListView },
+    { path: '/owner/:ownerId', name: 'OwnerCustomerServiceList', component: CustomerServiceListView },
     { path: '/owner/customer-service/:id', name: 'OwnerCustomerServiceDetails', component: CustomerServiceDetailsView,
         children: [
             { path: '', redirect: { name: 'OwnerEmployeesList' } },
