@@ -58,10 +58,15 @@ export default {
       this.$router.push(`/owner/customer-service/${this.customerServices[index].id}`);
     },
     onDeleteCustomerService(index) {
-      this.customerServices.splice(index, 1);
+      const customerServiceId = this.owner.customerServices.at(index).id;
+      this.axios
+          .delete(process.env.VUE_APP_BASE_API_URL + `/customerServices/${customerServiceId}`)
+          .then(() => {
+            this.owner.customerServices.splice(index, 1);
+          });
     },
     onAddCustomerService(name) {
-      this.customerServices.push(new CustomerService('valamiid', name, null, null ,null));
+      this.owner.customerServices.push(new CustomerService('valamiid', name, null, null ,null));
     }
   }
 }
