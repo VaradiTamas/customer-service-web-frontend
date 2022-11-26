@@ -1,6 +1,6 @@
 <template>
   <!--logout link-->
-  <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
+  <router-link :to="'/login'" class="logout-link">Log out</router-link>
   <!--main content-->
   <div class="owner-view-wrapper">
     <!--list title-->

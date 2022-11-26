@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <QRCodeDialog v-model="dialog" @close-dialog="dialog = false"/>
+  <QRCodeDialog :customer-service="customerService" v-model="dialog" @close-dialog="dialog = false"/>
 </template>
 
 <script>

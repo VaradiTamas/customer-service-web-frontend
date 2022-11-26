@@ -1,7 +1,7 @@
 <template>
   <div class="login-view-wrapper">
     <!--title-->
-    <h1 class="mt-16">Login to customer managing system</h1>
+    <h1 class="mt-16">Log in to the application</h1>
     <!--main content-->
     <div class="login-view mt-16">
       <!--form-->

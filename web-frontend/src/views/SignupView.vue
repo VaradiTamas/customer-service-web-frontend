@@ -1,7 +1,7 @@
 <template>
   <div class="signup-view-wrapper">
     <!--title-->
-    <h1 class="mt-16">Signup as a company owner</h1>
+    <h1 class="mt-16">Sign up as a company owner</h1>
     <!--main content-->
     <div class="signup-view mt-16">
       <!--form-->
