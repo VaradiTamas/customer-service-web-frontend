@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import { CustomerService } from "@/models/customer-service-model";
 import ButtonComponent from "@/components/ButtonComponent";
 import AddCustomerServiceDialog from "@/dialogs/AddCustomerServiceDialog";
 
@@ -55,7 +54,7 @@ export default {
 
   methods: {
     onCustomerServiceClick(index) {
-      this.$router.push(`/owner/customer-service/${this.customerServices[index].id}`);
+      this.$router.push(`/owner/${this.owner.id}/customer-service/${this.owner.customerServices[index].id}`);
     },
     onDeleteCustomerService(index) {
       const customerServiceId = this.owner.customerServices.at(index).id;
@@ -66,7 +65,16 @@ export default {
           });
     },
     onAddCustomerService(name) {
-      this.owner.customerServices.push(new CustomerService('valamiid', name, null, null ,null));
+      const createCustomerServiceRequestDto = {
+        ownerId: this.owner.id,
+        name: name,
+      };
+
+      this.axios
+          .post(process.env.VUE_APP_BASE_API_URL + '/customerServices', createCustomerServiceRequestDto)
+          .then((response) => {
+            this.owner.customerServices.push(response.data);
+          });
     }
   }
 }

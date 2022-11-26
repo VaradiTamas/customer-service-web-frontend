@@ -21,7 +21,7 @@ const routes = [
         ]
     },
     { path: '/owner/:ownerId', name: 'OwnerCustomerServiceList', component: CustomerServiceListView },
-    { path: '/owner/customer-service/:id', name: 'OwnerCustomerServiceDetails', component: CustomerServiceDetailsView,
+    { path: '/owner/:ownerId/customer-service/:customerServiceId', name: 'OwnerCustomerServiceDetails', component: CustomerServiceDetailsView,
         children: [
             { path: '', redirect: { name: 'OwnerEmployeesList' } },
             { path: 'employees', name: 'OwnerEmployeesList', component: EmployeesListComponent },

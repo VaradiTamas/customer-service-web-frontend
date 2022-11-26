@@ -7,7 +7,7 @@
     </div>
     <!--list content-->
     <div class="list-items-wrapper">
-      <div class="list-item-wrapper" v-for="(admin, index) in admins" :key="admin.id">
+      <div class="list-item-wrapper" v-for="(admin, index) in dataCustomerService.admins" :key="admin.id">
         <div class="list-item">{{ admin.email }}</div>
         <div class="list-item">{{ admin.password }}</div>
         <div class="list-trash-icon-wrapper">
@@ -33,19 +33,32 @@ export default {
   name: "AdminsListComponent",
   components: { AddAdminDialog, ButtonComponent},
 
+  props: {
+    propCustomerService: {
+      type: Object
+    }
+  },
+
   data: function() {
     return {
-      admins: [],
       dialog: false,
+      dataCustomerService: {
+        type: Object
+      },
     };
+  },
+
+  watch: {
+    propCustomerService: function(newVal) {
+      this.dataCustomerService = newVal;
+    }
+  },
+
+  beforeMount() {
+    this.dataCustomerService = this.propCustomerService;
   },
   
   methods: {
-    getAdminsData() {
-      this.admins.push(new Admin('sdasdkalsdjlkasdlkas', 'peldaemail1@esdas.com', 'valami1'));
-      this.admins.push(new Admin('dasdallalasásédlasád', 'peldaemail2@assada.com', 'valami2'));
-      this.admins.push(new Admin('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-    },
     onDeleteAdmin(index) {
       this.admins.splice(index, 1);
     },
@@ -53,10 +66,6 @@ export default {
       this.admins.push(new Admin('sadkskaédkasédlséldk', email, 'valami3'));
     }
   },
-  
-  beforeMount(){
-    this.getAdminsData();
-  }
 }
 </script>
 

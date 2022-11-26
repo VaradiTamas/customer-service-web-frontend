@@ -7,7 +7,7 @@
     </div>
     <!--list content-->
     <div class="list-items-wrapper">
-      <div class="list-item-wrapper" v-for="(employee, index) in employees" :key="employee.id">
+      <div class="list-item-wrapper" v-for="(employee, index) in dataCustomerService.employees" :key="employee.id">
         <div class="list-item">{{ employee.email }}</div>
         <div class="list-item">{{ employee.password }}</div>
         <div class="list-trash-icon-wrapper">
@@ -33,19 +33,32 @@ export default {
   name: "AdminEmployeesComponent",
   components: { AddEmployeeDialog, ButtonComponent },
 
+  props: {
+    propCustomerService: {
+      type: Object
+    }
+  },
+
   data: function() {
     return {
-      employees: [],
       dialog: false,
+      dataCustomerService: {
+        type: Object
+      },
     };
   },
 
+  watch: {
+    propCustomerService: function(newVal) {
+      this.dataCustomerService = newVal;
+    }
+  },
+
+  beforeMount() {
+    this.dataCustomerService = this.propCustomerService;
+  },
+
   methods: {
-    getEmployeesData() {
-      this.employees.push(new Employee('sdasdkalsdjlkasdlkas', 'peldaemail1@esdas.com', 'valami1'));
-      this.employees.push(new Employee('dasdallalasásédlasád', 'peldaemail2@assada.com', 'valami2'));
-      this.employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-    },
     onDeleteEmployee(index) {
       this.employees.splice(index, 1);
     },
@@ -53,10 +66,6 @@ export default {
       this.employees.push(new Employee('sadkskaédkasédlséldk', email, 'valami3'));
     }
   },
-
-  beforeMount(){
-    this.getEmployeesData();
-  }
 }
 </script>
 

@@ -1,24 +1,24 @@
 <template>
   <!--home link-->
-  <router-link :to="'/owner'">
+  <router-link :to="`/owner/${ownerId}`">
     <img class="home-icon" src="/icons/home.svg"/>
   </router-link>
   <!--logout link-->
-  <router-link :to="'/login'" class="logout-link"><u>Log out</u></router-link>
+  <router-link :to="'/login'" class="logout-link">Log out</router-link>
   <!--header-->
   <div class="customer-service-view-wrapper">
     <div class="header-wrapper">
-      <h1 class="pt-7">Telekom customer service</h1>
-      <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="this.dialog = true;"/>
+      <h1 class="pt-7">{{ customerService.name }}</h1>
+      <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="dialog = true;"/>
       <div class="menu-wrapper mt-8">
-        <router-link :to="`/owner/customer-service/${customerService.id}/employees`" class="menu-item">Employees</router-link>
-        <router-link :to="`/owner/customer-service/${customerService.id}/service-types`" class="menu-item ml-10">Service types</router-link>
-        <router-link :to="`/owner/customer-service/${customerService.id}/administrators`" class="menu-item ml-10">Administrators</router-link>
+        <router-link :to="`/owner/${ownerId}/customer-service/${customerService.id}/employees`" class="menu-item">Employees</router-link>
+        <router-link :to="`/owner/${ownerId}/customer-service/${customerService.id}/service-types`" class="menu-item ml-10">Service types</router-link>
+        <router-link :to="`/owner/${ownerId}/customer-service/${customerService.id}/administrators`" class="menu-item ml-10">Administrators</router-link>
       </div>
     </div>
     <!--main content-->
     <div class="main-content-wrapper">
-      <router-view></router-view>
+      <router-view :prop-customer-service="customerService"></router-view>
     </div>
   </div>
 
@@ -27,9 +27,6 @@
 
 <script>
 import QRCodeDialog from "@/dialogs/QRCodeDialog";
-import { ServiceType } from "@/models/service-type-model";
-import { Employee } from "@/models/employee-model";
-import { CustomerService } from "@/models/customer-service-model";
 export default {
   name: "CustomerServiceDetailsView",
   components: { QRCodeDialog },
@@ -37,30 +34,23 @@ export default {
   data: function() {
     return {
       dialog: false,
-      customerService: '',
+      ownerId: String,
+      customerService: {
+        type: Object,
+      },
     };
   },
 
   beforeMount() {
-    this.getCustomerServiceData();
-    console.log(this.serviceTypes)
+    this.ownerId = this.$route.params.ownerId;
+    const customerServiceId = this.$route.params.customerServiceId;
+
+    this.axios
+        .get(process.env.VUE_APP_BASE_API_URL + `/customerServices/${customerServiceId}`)
+        .then((response) => {
+          this.customerService = response.data;
+        });
   },
-
-  methods: {
-    getCustomerServiceData() {
-      const serviceTypes = [];
-      serviceTypes.push(new ServiceType('sdasdkalsdjlkasdlkas', 'name1', 11111));
-      serviceTypes.push(new ServiceType('dasdallalasásédlasád', 'name2', 222222));
-      serviceTypes.push(new ServiceType('sadkskaédkasédlséldk', 'name3', 3333));
-
-      const employees = [];
-      employees.push(new Employee('sdasdkalsdjlkasdlkas', 'peldaemail1@esdas.com', 'valami1'));
-      employees.push(new Employee('dasdallalasásédlasád', 'peldaemail2@assada.com', 'valami2'));
-      employees.push(new Employee('sadkskaédkasédlséldk', 'peldaemail3@sadsadasd.com', 'valami3'));
-
-      this.customerService = new CustomerService('randomid', 'Telekom customer service', serviceTypes, employees, null);
-    }
-  }
 }
 </script>
 

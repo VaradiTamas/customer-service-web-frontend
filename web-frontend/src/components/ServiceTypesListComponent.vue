@@ -44,7 +44,9 @@ export default {
   data: function() {
     return {
       dialog: false,
-      dataCustomerService: [],
+      dataCustomerService: {
+        type: Object
+      },
     };
   },
 
