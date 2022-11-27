@@ -13,7 +13,7 @@ const routes = [
     { path: '/', name: 'Home', component: LoginView },
     { path: '/login', name: 'Login', component: LoginView },
     { path: '/signup', name: 'Signup', component: SignupView },
-    { path: '/admin', name: 'Admin', component: AdminView,
+    { path: '/admin/:adminId', name: 'Admin', component: AdminView,
         children: [
             { path: '', redirect: { name: 'AdminEmployees' } },
             { path: 'employees', name: 'AdminEmployees', component: EmployeesListComponent },
