@@ -65,6 +65,18 @@ export default {
 
   methods: {
     onNextCustomerButtonClick() {
+      if (this.customerTicket.id) {
+        this.axios
+            .delete(process.env.VUE_APP_BASE_API_URL + `/tickets/${this.customerTicket.id}`)
+            .then((response) => {
+              this.customerTicket = response.data;
+              this.getNextTicket();
+            });
+      } else {
+        this.getNextTicket()
+      }
+    },
+    getNextTicket() {
       this.axios
           .get(process.env.VUE_APP_BASE_API_URL + `/customerServices/${this.employee.customerService.id}/nextTicket?employeeId=${this.employee.id}`)
           .then((response) => {
