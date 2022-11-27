@@ -57,7 +57,13 @@ export default {
   
   methods: {
     onDeleteAdmin(index) {
-      this.admins.splice(index, 1);
+      const adminId = this.dataCustomerService.admins.at(index).id
+
+      this.axios
+          .delete(process.env.VUE_APP_BASE_API_URL + `/admins/${adminId}`)
+          .then(() => {
+            this.dataCustomerService.admins.splice(index, 1);
+          });
     },
     onAddAdmin(email) {
       const registerUserDto = {
