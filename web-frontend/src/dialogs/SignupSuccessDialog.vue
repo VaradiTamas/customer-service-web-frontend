@@ -21,7 +21,7 @@ export default {
   methods: {
     onOKButtonClick() {
       this.$emit('closeDialog');
-      this.$router.push('/owner');
+      this.$router.push('/login');
     }
   }
 }

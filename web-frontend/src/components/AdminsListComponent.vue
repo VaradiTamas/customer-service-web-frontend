@@ -3,13 +3,11 @@
     <!--list titles-->
     <div class="list-title-wrapper">
       <div class="list-title">Email</div>
-      <div class="list-title">Password</div>
     </div>
     <!--list content-->
     <div class="list-items-wrapper">
       <div class="list-item-wrapper" v-for="(admin, index) in dataCustomerService.admins" :key="admin.id">
         <div class="list-item">{{ admin.email }}</div>
-        <div class="list-item">{{ admin.password }}</div>
         <div class="list-trash-icon-wrapper">
           <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteAdmin(index)"/>
         </div>
@@ -26,7 +24,6 @@
 
 <script>
 import ButtonComponent from "@/components/ButtonComponent";
-import { Admin } from "@/models/admin-model";
 import AddAdminDialog from "@/dialogs/AddAdminDialog";
 
 export default {
@@ -63,7 +60,18 @@ export default {
       this.admins.splice(index, 1);
     },
     onAddAdmin(email) {
-      this.admins.push(new Admin('sadkskaédkasédlséldk', email, 'valami3'));
+      const registerUserDto = {
+        email: email,
+        password: "this field won't be used",
+        role: "ADMIN",
+        customerServiceId: this.dataCustomerService.id
+      };
+
+      this.axios
+          .post(process.env.VUE_APP_BASE_API_URL + '/auth/register', registerUserDto)
+          .then((response) => {
+            this.dataCustomerService.admins.push(response.data);
+          });
     }
   },
 }

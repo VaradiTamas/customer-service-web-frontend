@@ -74,7 +74,18 @@
         this.$refs.form.validate();
 
         if (this.valid) {
-          this.dialog = true;
+          const registerUserDto = {
+            email: this.email,
+            password: this.password,
+            role: "OWNER",
+            customerServiceId: "fakeuuid-5717-4562-b3fc-2c963f66afa6"
+          };
+
+          this.axios
+              .post(process.env.VUE_APP_BASE_API_URL + '/auth/register', registerUserDto)
+              .then(() => {
+                this.dialog = true;
+              });
         }
       },
     },

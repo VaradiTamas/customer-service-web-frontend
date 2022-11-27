@@ -3,13 +3,11 @@
     <!--list titles-->
     <div class="list-title-wrapper">
       <div class="list-title">Email</div>
-      <div class="list-title">Password</div>
     </div>
     <!--list content-->
     <div class="list-items-wrapper">
       <div class="list-item-wrapper" v-for="(employee, index) in dataCustomerService.employees" :key="employee.id">
         <div class="list-item">{{ employee.email }}</div>
-        <div class="list-item">{{ employee.password }}</div>
         <div class="list-trash-icon-wrapper">
           <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteEmployee(index)"/>
         </div>
@@ -25,7 +23,6 @@
 </template>
 
 <script>
-import { Employee } from "@/models/employee-model";
 import ButtonComponent from "@/components/ButtonComponent";
 import AddEmployeeDialog from "@/dialogs/AddEmployeeDialog";
 
@@ -60,10 +57,27 @@ export default {
 
   methods: {
     onDeleteEmployee(index) {
-      this.employees.splice(index, 1);
+      const employeeId = this.dataCustomerService.employees.at(index).id
+
+      this.axios
+          .delete(process.env.VUE_APP_BASE_API_URL + `/employees/${employeeId}`)
+          .then(() => {
+            this.dataCustomerService.employees.splice(index, 1);
+          });
     },
     onAddEmployee(email) {
-      this.employees.push(new Employee('sadkskaédkasédlséldk', email, 'valami3'));
+      const registerUserDto = {
+        email: email,
+        password: "this field won't be used",
+        role: "EMPLOYEE",
+        customerServiceId: this.dataCustomerService.id
+      };
+
+      this.axios
+          .post(process.env.VUE_APP_BASE_API_URL + '/auth/register', registerUserDto)
+          .then((response) => {
+            this.dataCustomerService.employees.push(response.data);
+          });
     }
   },
 }
