@@ -57,9 +57,29 @@
         this.$refs.form.validate();
         
         if (this.valid) {
-          // axios login endpoint email jelszo parossal visszajön egy JWT, admin employee vagy owner id-ja és eszerint
-          // elirányítjuk a megfelelő routera
-          this.$router.push('/admin');
+          const loginUserRequestDto = {
+            email: this.email,
+            password: this.password,
+          };
+
+          this.axios
+              .post(process.env.VUE_APP_BASE_API_URL + "/auth/login", loginUserRequestDto)
+              .then((response) => {
+                switch (response.data.roles[0]) {
+                  case "ROLE_ADMIN": {
+                    this.$router.push(`/admin/${response.data.userId}`)
+                    break;
+                  }
+                  case "ROLE_EMPLOYEE": {
+                    this.$router.push(`/employee/${response.data.userId}`)
+                    break;
+                  }
+                  case "ROLE_OWNER": {
+                    this.$router.push(`/owner/${response.data.userId}`)
+                    break;
+                  }
+                }
+              });
         }
       }
     },
