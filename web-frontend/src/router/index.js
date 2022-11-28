@@ -30,6 +30,7 @@ const routes = [
         ]
     },
     { path: '/employee/:employeeId', name: 'EmployeeView', component: EmployeeView },
+    { path: '/:catchAll(.*)', redirect: '/login' },
 ]
 
 const router = createRouter({
