@@ -81,7 +81,6 @@ export default {
       this.axios
           .delete(process.env.VUE_APP_BASE_API_URL + "/serviceTypes/" + serviceTypeId)
           .then((response) => {
-            console.log(response.data);
             this.dataCustomerService.serviceTypes.splice(index, 1);
           });
     },

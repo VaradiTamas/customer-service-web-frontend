@@ -47,7 +47,6 @@
         return response;
       }, (error) => {
         loader.hide();
-        console.log(error);
         this.errorMessage = error.response?.data?.message ?? 'Unknown error happened';
         this.dialog = true;
       });

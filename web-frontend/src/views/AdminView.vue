@@ -41,7 +41,6 @@
       this.axios
           .get(process.env.VUE_APP_BASE_API_URL + `/admins/${adminId}`)
           .then((response) => {
-            console.log(response.data.customerService)
             this.admin = response.data;
           });
     },
