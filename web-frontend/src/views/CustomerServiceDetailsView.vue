@@ -4,7 +4,7 @@
     <img class="home-icon" src="/icons/home.svg"/>
   </router-link>
   <!--logout link-->
-  <router-link :to="'/login'" class="logout-link">Log out</router-link>
+  <router-link :to="'/login'" class="logout-link" @click="onLogoutButtonClick">Log out</router-link>
   <!--header-->
   <div class="customer-service-view-wrapper">
     <div class="header-wrapper">
@@ -51,6 +51,13 @@ export default {
           this.customerService = response.data;
         });
   },
+
+  methods: {
+    onLogoutButtonClick() {
+      localStorage.removeItem('customerQueueToken')
+      localStorage.removeItem('customerQueueTokenValidity')
+    }
+  }
 }
 </script>
 

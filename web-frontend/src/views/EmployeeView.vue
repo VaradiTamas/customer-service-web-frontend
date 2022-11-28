@@ -6,11 +6,11 @@
       <img class="qr-code-icon" src="/icons/qr-code.svg" @click="dialog = true;"/>
       <!--customer service name and helpdesk number-->
       <div class="header-title-wrapper">
-        <h1>{{ employee.customerService.name }}</h1>
+        <h1>{{ employee?.customerService?.name }}</h1>
         <h2 class="mt-3">Helpdesk number: {{ employee.helpDeskNumber }}</h2>
       </div>
       <!--logout link-->
-      <router-link class="header-logout-link" :to="'/login'">Log out</router-link>
+      <router-link class="header-logout-link" :to="'/login'" @click="onLogoutButtonClick">Log out</router-link>
     </div>
     <!--main content-->
     <div class="main-content-wrapper">
@@ -81,6 +81,14 @@ export default {
           .get(process.env.VUE_APP_BASE_API_URL + `/customerServices/${this.employee.customerService.id}/nextTicket?employeeId=${this.employee.id}`)
           .then((response) => {
             this.customerTicket = response.data;
+          });
+    },
+    onLogoutButtonClick() {
+      this.axios
+          .patch(process.env.VUE_APP_BASE_API_URL + `/auth/${this.employee.id}/logout`)
+          .then(() => {
+            localStorage.removeItem('customerQueueToken')
+            localStorage.removeItem('customerQueueTokenValidity')
           });
     }
   },

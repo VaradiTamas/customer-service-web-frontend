@@ -1,6 +1,6 @@
 <template>
   <!--logout link-->
-  <router-link :to="'/login'" class="logout-link">Log out</router-link>
+  <router-link :to="'/login'" class="logout-link" @click="onLogoutButtonClick">Log out</router-link>
   <!--main content-->
   <div class="owner-view-wrapper">
     <!--list title-->
@@ -75,6 +75,10 @@ export default {
           .then((response) => {
             this.owner.customerServices.push(response.data);
           });
+    },
+    onLogoutButtonClick() {
+      localStorage.removeItem('customerQueueToken')
+      localStorage.removeItem('customerQueueTokenValidity')
     }
   }
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="admin-view-wrapper">
     <!--logout link-->
-    <router-link :to="'/login'" class="logout-link">Log out</router-link>
+    <router-link :to="'/login'" class="logout-link" @click="onLogoutButtonClick">Log out</router-link>
     <!--header-->
     <div class="header-wrapper">
-      <h1 class="pt-5">{{ admin.customerService.name }}</h1>
+      <h1 class="pt-5">{{ admin?.customerService?.name }}</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="this.dialog = true;"/>
       <div class="menu-wrapper mt-8">
         <router-link :to="`/admin/${admin.id}/employees`" class="menu-item">Employees</router-link>
@@ -45,6 +45,13 @@
             this.admin = response.data;
           });
     },
+
+    methods: {
+      onLogoutButtonClick() {
+        localStorage.removeItem('customerQueueToken')
+        localStorage.removeItem('customerQueueTokenValidity')
+      }
+    }
   }
 </script>
 
