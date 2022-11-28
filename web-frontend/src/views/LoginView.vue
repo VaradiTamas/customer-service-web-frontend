@@ -71,7 +71,8 @@
         }
       },
       cacheJwtToken(data) {
-        console.log(data);
+        localStorage.setItem('customerQueueToken', data.token);
+        localStorage.setItem('customerQueueTokenValidity', data.tokenValidity);
       },
       navigateToUsersPage(data) {
         switch (data.roles[0]) {
