@@ -27,15 +27,17 @@
       this.axios.interceptors.request.use((request) => {
         loader = this.$loading.show();
 
-        // const token = "dsdsadadas";
-        // const tokenValidity = "dateofvalidity";
-        //
-        // if (tokenValidity > Date.now()) {
-        //   request.headers.common.Authorization = `Bearer ${token}`;
-        // } else {
-        //   // delete cache
-        //   this.$router.push('/login');
-        // }
+        const token = localStorage.getItem('customerQueueToken');
+        const tokenValidity = localStorage.getItem('customerQueueTokenValidity');
+        const dateNow = new Date(tokenValidity);
+
+        if ((!tokenValidity && !token) || dateNow.getTime() > Date.now()) {
+          request.headers.Authorization = `Bearer ${token}`;
+        } else {
+          localStorage.removeItem('customerQueueToken')
+          localStorage.removeItem('customerQueueTokenValidity')
+          this.$router.push('/login');
+        }
 
         return request;
       });
@@ -46,7 +48,7 @@
       }, (error) => {
         loader.hide();
         console.log(error);
-        this.errorMessage = error.response.data.message;
+        this.errorMessage = error.response?.data?.message ?? 'Unknown error happened';
         this.dialog = true;
       });
     },

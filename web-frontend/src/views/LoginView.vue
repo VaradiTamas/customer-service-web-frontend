@@ -65,6 +65,7 @@
           this.axios
               .post(process.env.VUE_APP_BASE_API_URL + "/auth/login", loginUserRequestDto)
               .then((response) => {
+                console.log(response.data);
                 this.cacheJwtToken(response.data);
                 this.navigateToUsersPage(response.data);
               });
