@@ -60,8 +60,10 @@ export default {
       const customerServiceId = this.owner.customerServices.at(index).id;
       this.axios
           .delete(process.env.VUE_APP_BASE_API_URL + `/customerServices/${customerServiceId}`)
-          .then(() => {
-            this.owner.customerServices.splice(index, 1);
+          .then((response) => {
+            if (!response.code) {
+              this.owner.customerServices.splice(index, 1);
+            }
           });
     },
     onAddCustomerService(name) {

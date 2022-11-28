@@ -49,6 +49,7 @@
         loader.hide();
         this.errorMessage = error.response?.data?.message ?? 'Unknown error happened';
         this.dialog = true;
+        return error;
       });
     },
   }
