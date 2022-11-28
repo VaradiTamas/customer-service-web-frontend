@@ -65,21 +65,28 @@
           this.axios
               .post(process.env.VUE_APP_BASE_API_URL + "/auth/login", loginUserRequestDto)
               .then((response) => {
-                switch (response.data.roles[0]) {
-                  case "ROLE_ADMIN": {
-                    this.$router.push(`/admin/${response.data.userId}`)
-                    break;
-                  }
-                  case "ROLE_EMPLOYEE": {
-                    this.$router.push(`/employee/${response.data.userId}`)
-                    break;
-                  }
-                  case "ROLE_OWNER": {
-                    this.$router.push(`/owner/${response.data.userId}`)
-                    break;
-                  }
-                }
+                this.cacheJwtToken(response.data);
+                this.navigateToUsersPage(response.data);
               });
+        }
+      },
+      cacheJwtToken(data) {
+        console.log(data);
+      },
+      navigateToUsersPage(data) {
+        switch (data.roles[0]) {
+          case "ROLE_ADMIN": {
+            this.$router.push(`/admin/${data.userId}`)
+            break;
+          }
+          case "ROLE_EMPLOYEE": {
+            this.$router.push(`/employee/${data.userId}`)
+            break;
+          }
+          case "ROLE_OWNER": {
+            this.$router.push(`/owner/${data.userId}`)
+            break;
+          }
         }
       }
     },
