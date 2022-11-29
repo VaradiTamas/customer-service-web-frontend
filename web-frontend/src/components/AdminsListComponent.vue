@@ -8,6 +8,7 @@
     <div class="list-items-wrapper">
       <div class="list-item-wrapper" v-for="(admin, index) in dataCustomerService?.admins" :key="admin.id">
         <div class="list-item">{{ admin.email }}</div>
+        <div class="list-item"></div>
         <div class="list-trash-icon-wrapper">
           <img class="list-trash-icon" src="/icons/trash.svg" @click="onDeleteAdmin(index)"/>
         </div>

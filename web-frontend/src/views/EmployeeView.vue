@@ -7,7 +7,7 @@
       <!--customer service name and helpdesk number-->
       <div class="header-title-wrapper">
         <h1>{{ employee?.customerService?.name }}</h1>
-        <h2 class="mt-3">Helpdesk number: {{ employee.helpDeskNumber }}</h2>
+        <h2 class="mt-3">Helpdesk number: {{ employee?.helpDeskNumber }}</h2>
       </div>
       <!--logout link-->
       <router-link class="header-logout-link" :to="'/login'" @click="onLogoutButtonClick">Log out</router-link>
@@ -17,12 +17,12 @@
       <!--ticket number-->
       <div class="half-main-content-wrapper">
         <h1 class="half-main-content-title">Ticket number</h1>
-        <div class="ticket-number"><p>{{ customerTicket.ticketNumber }}</p></div>
+        <div class="ticket-number"><p>{{ customerTicket?.ticketNumber }}</p></div>
       </div>
       <!--service type-->
       <div class="half-main-content-wrapper">
         <h1 class="half-main-content-title">Service type</h1>
-        <div class="service-type"><p>{{ customerTicket.serviceTypeName }}</p></div>
+        <div class="service-type"><p>{{ customerTicket?.serviceTypeName }}</p></div>
       </div>
     </div>
     <!--next customer button-->
@@ -65,7 +65,7 @@ export default {
 
   methods: {
     onNextCustomerButtonClick() {
-      if (this.customerTicket.id) {
+      if (this.customerTicket?.id) {
         this.axios
             .delete(process.env.VUE_APP_BASE_API_URL + `/tickets/${this.customerTicket.id}`)
             .then((response) => {

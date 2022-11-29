@@ -7,8 +7,8 @@
       <h1 class="pt-5">{{ admin?.customerService?.name }}</h1>
       <img class="qr-code-icon mt-4" src="/icons/qr-code.svg" @click="this.dialog = true;"/>
       <div class="menu-wrapper mt-8">
-        <router-link :to="`/admin/${admin.id}/employees`" class="menu-item">Employees</router-link>
-        <router-link :to="`/admin/${admin.id}/service-types`" class="menu-item ml-10">Service types</router-link>
+        <router-link :to="`/admin/${admin?.id}/employees`" class="menu-item">Employees</router-link>
+        <router-link :to="`/admin/${admin?.id}/service-types`" class="menu-item ml-10">Service types</router-link>
       </div>
     </div>
     <!--main content-->
@@ -37,7 +37,6 @@
 
     beforeMount() {
       const adminId = this.$route.params.adminId;
-
       this.axios
           .get(process.env.VUE_APP_BASE_API_URL + `/admins/${adminId}`)
           .then((response) => {
